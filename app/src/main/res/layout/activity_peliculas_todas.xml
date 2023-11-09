@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/activity_header" />
+
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="176dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="110dp"
+        android:background="@android:drawable/editbox_background_normal"
+        android:drawableLeft="@android:drawable/ic_search"
+        android:drawablePadding="8dp"
+        android:hint="Buscar películas"
+        android:inputType="text"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioButton
+        android:id="@+id/Todo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Todo"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/searchEditText"
+        app:layout_constraintTop_toBottomOf="@+id/searchEditText" />
+
+    <RadioButton
+        android:id="@+id/recomendados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Recomendados"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/Todo"
+        app:layout_constraintTop_toBottomOf="@+id/Todo" />
+
+    <TextView
+        android:id="@+id/accion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Accion"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/recomendados"
+        tools:layout_editor_absoluteX="24dp" />
+
+    <TextView
+        android:id="@+id/terror"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Terror"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/accion"
+        app:layout_constraintTop_toBottomOf="@+id/accion" />
+
+    <TextView
+        android:id="@+id/comedias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Comedia"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/terror"
+        app:layout_constraintTop_toBottomOf="@+id/terror" />
+
+    <TextView
+        android:id="@+id/romances"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Romance"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/comedias"
+        app:layout_constraintTop_toBottomOf="@+id/comedias" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
