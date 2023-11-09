@@ -24,6 +24,7 @@
         android:backgroundTint="#000000"
         android:ems="10"
         android:inputType="text"
+        android:minHeight="48dp"
         android:text="Usuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +37,7 @@
         android:layout_marginTop="50dp"
         android:ems="10"
         android:inputType="text"
+        android:minHeight="48dp"
         android:text="Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -46,40 +48,40 @@
         android:id="@+id/buttonIniciarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginBottom="225dp"
         android:background="@drawable/roundedbutton"
         android:backgroundTint="#636363"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="Iniciar sesión"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tvCuenta"
+        android:id="@+id/tvNoTienesCuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:fontFamily="@font/roboto"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif"
         android:text="No tienes cuenta? "
-        app:layout_constraintEnd_toStartOf="@+id/tvRegistrate"
+        app:layout_constraintEnd_toStartOf="@+id/tvRegistre"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonIniciarSesion" />
 
     <TextView
-        android:id="@+id/tvRegistrate"
+        android:id="@+id/tvRegistre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="Registrate"
+        android:fontFamily="sans-serif"
+        android:text="Registrarse"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNoTienesCuenta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvCuenta"
-        tools:layout_editor_absoluteY="546dp" />
+        app:layout_constraintStart_toEndOf="@+id/tvNoTienesCuenta"
+        app:layout_constraintTop_toTopOf="@+id/tvNoTienesCuenta" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
