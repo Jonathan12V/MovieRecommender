@@ -24,9 +24,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-            android:src="@mipmap/poster_placeholder"
             android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:src="@mipmap/poster_placeholder"
+            tools:ignore="ImageContrastCheck" />
 
     </androidx.cardview.widget.CardView>
 
@@ -40,6 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cv_question_image"
         app:srcCompat="@mipmap/estrella"
+        tools:ignore="ImageContrastCheck"
         tools:visibility="visible" />
 
     <TextView

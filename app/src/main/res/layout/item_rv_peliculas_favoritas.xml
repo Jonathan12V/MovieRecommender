@@ -33,7 +33,8 @@
                 android:background="@color/white"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/poster_placeholder" />
+                android:src="@mipmap/poster_placeholder"
+                tools:ignore="ImageContrastCheck" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,7 +44,7 @@
 
                 <TextView
                     android:id="@+id/tv_movie_name_favorite"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ellipsize="end"
@@ -51,7 +52,7 @@
                     android:maxLines="2"
                     android:padding="12dp"
                     android:textColor="@color/white"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     tools:text="@string/nombre_pelicula" />
 
                 <ImageView
@@ -59,20 +60,22 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
                     android:contentDescription="@string/contentDescripcion_like"
                     android:tint="@color/white"
                     app:srcCompat="@mipmap/like"
-                    tools:visibility="visible" />
+                    tools:visibility="visible"
+                    tools:ignore="UseAppTint" />
 
                 <ImageView
                     android:id="@+id/iv_corazon_favorite"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:contentDescription="@string/contentDescripcion_corazon"
                     app:srcCompat="@mipmap/corazon_rojo"
+                    tools:ignore="ImageContrastCheck"
                     tools:visibility="visible" />
             </LinearLayout>
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -32,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/roboto_bold"
+        style="@style/BoldTitle"
         android:text="@string/menu_nombre_usuario"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
@@ -79,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:fontFamily="@font/roboto_bold"
+        style="@style/BoldTitle"
         android:text="@string/menu_perfil"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
@@ -94,13 +95,14 @@
         android:contentDescription="@string/contentDescripcion_favoritos"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:srcCompat="@mipmap/favorito" />
+        app:srcCompat="@mipmap/favorito"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
+        style="@style/BoldTitle"
         android:text="@string/menu_favoritos"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
@@ -121,7 +123,7 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
+        style="@style/BoldTitle"
         android:text="@string/menu_cerrar_sesion"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
@@ -134,7 +136,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/roboto_bold"
+        style="@style/BoldTitle"
         android:text="@string/menu_tema_oscuro"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/view"
@@ -164,19 +166,24 @@
         android:id="@+id/radioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
         android:checked="true"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
         app:layout_constraintTop_toTopOf="@+id/textView11"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="292dp" />
+        tools:ignore="MissingConstraints,DuplicateSpeakableTextCheck" />
 
     <RadioButton
         android:id="@+id/radioButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="true"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView12"
+        app:layout_constraintStart_toStartOf="@+id/radioButton"
         app:layout_constraintTop_toTopOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="292dp" />
+        app:layout_constraintVertical_bias="0.583"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

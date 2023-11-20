@@ -26,14 +26,24 @@
         android:layout_height="30dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="110dp"
+        android:contentDescription="@string/contentDescripcion_favoritos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/favorito" />
+        app:srcCompat="@mipmap/favorito"
+        tools:ignore="ImageContrastCheck" />
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#55000000"
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="166dp" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/view5" />
 </androidx.constraintlayout.widget.ConstraintLayout>
