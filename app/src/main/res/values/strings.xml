@@ -1,3 +1,54 @@
 <resources>
     <string name="app_name">MovieRecommender</string>
+
+    <!-- Layout Mostrar Peliculas Principal -->
+    <string name="buscador_placeholder">Buscar películas</string>
+    <string name="selector_todo">Todo</string>
+    <string name="selector_recomendados">Recomendados</string>
+    <string name="lista_genero_accion">Accion</string>
+    <string name="lista_genero_terror">Terror</string>
+    <string name="lista_genero_comedia">Comedia</string>
+    <string name="lista_genero_romance">Romance</string>
+    <string name="lista_genero_animacion">Animación</string>
+    <string name="lista_genero_musica">Música</string>
+    <string name="lista_genero_ciencia_ficcion">Ciencia Ficción</string>
+    <string name="lista_genero_misterio">Misterio</string>
+    <string name="lista_genero_fantasia">Fantasia</string>
+    <string name="peliculas_no_encontradas">No se encontraron resultados</string>
+
+    <!-- Mostrar información de la pelicula -->
+    <string name="nombre_pelicula">Nombre Pelicula</string>
+    <string name="descripcion">Descripción:</string>
+    <string name="poster_placeholder">Imagen por defecto</string>
+    <string name="nombre_descripcion">descripción</string>
+    <string name="genero">Genero:</string>
+    <string name="nombre_genero">Accion</string>
+    <string name="año">Año:</string>
+    <string name="nombre_año">2009</string>
+    <string name="reparto">Reparto:</string>
+    <string name="nombre_reparto">Vin Diesel</string>
+    <string name="rating">8.5</string>
+
+    <!-- Texto de peliculas Favoritas -->
+    <string name="nombre_peliculas_favoritas">Peliculas</string>
+
+    <!-- Menu -->
+    <string name="menu_nombre_usuario">Nombre</string>
+    <string name="menu_perfil">Perfil</string>
+    <string name="menu_favoritos">Favoritos</string>
+    <string name="menu_cerrar_sesion">Cerrar sesión</string>
+    <string name="menu_tema_oscuro">Tema oscuro</string>
+    <string name="menu_noche_clara">Noche clara</string>
+    <string name="menu_noche_oscura">Noche oscura</string>
+
+    <!-- Content Description de las imagenes -->
+    <string name="contentDescripcion_cerrar">Icono para cerrar sesión</string>
+    <string name="contentDescripcion_favoritos">Icono para mostrar peliculas favoritas</string>
+    <string name="contentDescripcion_usuario">Icono para el usuario</string>
+    <string name="contentDescripcion_foto">Icono de foto de perfil por defecto</string>
+    <string name="contentDescripcion_like">Icono de darle like a una pelicula</string>
+    <string name="contentDescripcion_corazon">Icono de darle me gusta a una pelicula</string>
+    <string name="contentDescripcion_rating">Icono del Rating</string>
+    <string name="contentDescripcion_menu_hamburguesa">Icono Menu Hamburguesa</string>
+    <string name="contentDescripcion_logo">Icono Logo de la APP</string>
 </resources>

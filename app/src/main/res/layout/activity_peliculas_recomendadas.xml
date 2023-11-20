@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,24 +12,26 @@
     <EditText
         android:id="@+id/searchEditText"
         android:layout_width="176dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="110dp"
         android:background="@android:drawable/editbox_background_normal"
-        android:drawableLeft="@android:drawable/ic_search"
+        android:drawableStart="@mipmap/lupa"
         android:drawablePadding="8dp"
-        android:hint="Buscar películas"
+        android:hint="@string/buscador_placeholder"
         android:inputType="text"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
 
     <RadioButton
         android:id="@+id/Todo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Todo"
+        android:minHeight="48dp"
+        android:text="@string/selector_todo"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/searchEditText"
         app:layout_constraintTop_toBottomOf="@+id/searchEditText" />
@@ -39,54 +41,238 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Recomendados"
+        android:checked="true"
+        android:minHeight="48dp"
+        android:text="@string/selector_recomendados"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/Todo"
         app:layout_constraintTop_toBottomOf="@+id/Todo" />
 
-    <TextView
-        android:id="@+id/accion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Accion"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/recomendados"
-        tools:layout_editor_absoluteX="24dp" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recomendados">
 
-    <TextView
-        android:id="@+id/terror"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Terror"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/accion"
-        app:layout_constraintTop_toBottomOf="@+id/accion" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/comedias"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Comedia"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/terror"
-        app:layout_constraintTop_toBottomOf="@+id/terror" />
+            <TextView
+                android:id="@+id/accion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:text="@string/lista_genero_accion"
+                android:textSize="17sp"
+                style="@style/BoldTitle"
+                app:layout_constraintStart_toStartOf="@+id/rvAccion"
+                app:layout_constraintTop_toBottomOf="@+id/recomendados" />
 
-    <TextView
-        android:id="@+id/romances"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Romance"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/comedias"
-        app:layout_constraintTop_toBottomOf="@+id/comedias" />
+            <!-- Agrega la RecyclerView aquí -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/accion" />
 
+            <TextView
+                android:id="@+id/terror"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/lista_genero_terror"
+                android:textSize="17sp"
+                style="@style/BoldTitle"
+                app:layout_constraintStart_toStartOf="@+id/rvTerror"
+                app:layout_constraintTop_toBottomOf="@+id/rvAccion" />
+
+            <!-- Agrega la RecyclerView aquí -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTerror"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/terror" />
+
+            <TextView
+                android:id="@+id/comedia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/lista_genero_comedia"
+                android:textSize="17sp"
+                style="@style/BoldTitle"
+                app:layout_constraintStart_toStartOf="@+id/rvComedia"
+                app:layout_constraintTop_toBottomOf="@+id/rvTerror" />
+
+
+            <!-- Agrega la RecyclerView aquí -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvComedia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/comedia" />
+
+            <TextView
+                android:id="@+id/romance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/lista_genero_romance"
+                android:textSize="17sp"
+                style="@style/BoldTitle"
+                app:layout_constraintStart_toStartOf="@+id/rvRomance"
+                app:layout_constraintTop_toBottomOf="@+id/rvComedia" />
+            <!-- Agrega la RecyclerView aquí -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRomance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/romance" />
+
+            <TextView
+                android:id="@+id/animacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/lista_genero_animacion"
+                android:textSize="17sp"
+                style="@style/BoldTitle"
+                app:layout_constraintStart_toStartOf="@+id/rvAnimacion"
+                app:layout_constraintTop_toBottomOf="@+id/rvRomance" />
+            <!-- Agrega la RecyclerView aquí -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAnimacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/animacion" />
+
+            <TextView
+                android:id="@+id/musica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/lista_genero_musica"
+                android:textSize="17sp"
+                style="@style/BoldTitle"
+                app:layout_constraintStart_toStartOf="@+id/rvMusica"
+                app:layout_constraintTop_toBottomOf="@+id/rvAnimacion" />
+            <!-- Agrega la RecyclerView aquí -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMusica"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/musica" />
+
+            <TextView
+                android:id="@+id/cienciaFiccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/lista_genero_ciencia_ficcion"
+                android:textSize="17sp"
+                style="@style/BoldTitle"
+                app:layout_constraintStart_toStartOf="@+id/rvCienciaFiccion"
+                app:layout_constraintTop_toBottomOf="@+id/rvMusica" />
+            <!-- Agrega la RecyclerView aquí -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCienciaFiccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cienciaFiccion" />
+
+            <TextView
+                android:id="@+id/misterio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/lista_genero_misterio"
+                android:textSize="17sp"
+                style="@style/BoldTitle"
+                app:layout_constraintStart_toStartOf="@+id/rvMisterio"
+                app:layout_constraintTop_toBottomOf="@+id/rvMusica" />
+            <!-- Agrega la RecyclerView aquí -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMisterio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/misterio" />
+
+            <TextView
+                android:id="@+id/fantasia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/lista_genero_fantasia"
+                android:textSize="17sp"
+                style="@style/BoldTitle"
+                app:layout_constraintStart_toStartOf="@+id/rvFantasia"
+                app:layout_constraintTop_toBottomOf="@+id/rvMisterio" />
+            <!-- Agrega la RecyclerView aquí -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFantasia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fantasia" />
+
+            <!-- TextView para mensajes cuando no hay resultados -->
+            <TextView
+                android:id="@+id/noResultsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/peliculas_no_encontradas"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
