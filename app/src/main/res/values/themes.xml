@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.MovieRecommender" parent="android:Theme.Material.Light.NoActionBar" >
+    <style name="Theme.MovieRecommender" parent="Theme.MaterialComponents.Light.DarkActionBar" >
         <!-- Definiciones del tema por defecto -->
         <item name="android:windowBackground">@mipmap/fondo_blanco</item>
         <item name="android:fontFamily">@font/roboto</item>
@@ -23,4 +23,9 @@
     <style name="BoldTitle">
         <item name="android:fontFamily">@font/roboto_bold</item>
     </style>
+    <style name="Widget.MyApp.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+    </style>
+
 </resources>
