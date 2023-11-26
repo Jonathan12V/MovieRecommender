@@ -33,7 +33,7 @@
     <string name="nombre_peliculas_favoritas">Peliculas</string>
 
     <!-- Menu -->
-    <string name="menu_nombre_usuario">Nombre</string>
+    <string name="nombre_usuario">Pablo51</string>
     <string name="menu_perfil">Perfil</string>
     <string name="menu_favoritos">Favoritos</string>
     <string name="menu_cerrar_sesion">Cerrar sesión</string>
@@ -51,4 +51,15 @@
     <string name="contentDescripcion_rating">Icono del Rating</string>
     <string name="contentDescripcion_menu_hamburguesa">Icono Menu Hamburguesa</string>
     <string name="contentDescripcion_logo">Icono Logo de la APP</string>
+
+    <!-- Perfil Datos  -->
+    <string name="perfil_datos">Datos</string>
+    <string name="perfil_nombre_usuario">Nombre de usuario</string>
+    <string name="perfil_email">Email</string>
+    <string name="perfil_dato_email">pablo51@gmail.com</string>
+    <string name="perfil_preferencias">Preferencias</string>
+    <string name="perfil_select_tus_peliculas">Tus Peliculas</string>
+    <string name="perfil_select_tus_actores">Tus Actores</string>
+    <string name="perfil_select_tus_generos">Tus Generos</string>
+    <string name="perfil_boton_editar">Editar</string>
 </resources>
