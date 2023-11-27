@@ -20,67 +20,41 @@
         android:id="@+id/buttonIniciarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="225dp"
+        android:layout_marginBottom="125dp"
         android:background="@drawable/roundedbutton"
         android:backgroundTint="@color/gris_login"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="@string/iniciarSesion"
+        android:text="@string/registrate"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/tvNoTienesCuenta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/roboto"
-        android:text="@string/noTienesCuenta"
-        app:layout_constraintEnd_toStartOf="@+id/tvRegistre"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonIniciarSesion" />
-
-    <TextView
-        android:id="@+id/tvRegistre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/roboto_bold"
-        android:text="@string/registrate"
-        app:layout_constraintBottom_toBottomOf="@+id/tvNoTienesCuenta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvNoTienesCuenta"
-        app:layout_constraintTop_toTopOf="@+id/tvNoTienesCuenta" />
-
     <EditText
-        android:id="@+id/etUser"
+        android:id="@+id/etPeliculas"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="64dp"
         android:background="@drawable/custom_input"
-        android:drawableStart="@mipmap/perfil64px"
+        android:drawableStart="@mipmap/peliculas64px"
         android:drawablePadding="12dp"
         android:drawableTint="@color/white"
         android:textColorHint="@color/white"
         android:ems="10"
-        android:hint="@string/usuarioHint"
+        android:hint="@string/selecPeliculas"
         android:inputType="text"
         android:padding="5dp"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagenLogo"
-        tools:text="@string/usuarioHint" />
+        tools:text="@string/selecPeliculas" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etActores"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -89,18 +63,73 @@
         android:background="@drawable/custom_input"
         android:textColorHint="@color/white"
 
-        android:drawableStart="@mipmap/password64px"
+        android:drawableStart="@mipmap/actor64px"
         android:drawablePadding="12dp"
         android:drawableTint="@color/white"
         android:ems="10"
-        android:hint="@string/contraseña"
-        android:inputType="textPassword"
+        android:hint="@string/selecActores"
+        android:inputType="text"
         android:padding="5dp"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUser"
-        tools:text="@string/contraseña" />
+        app:layout_constraintTop_toBottomOf="@+id/etPeliculas"
+        tools:text="@string/selecActores" />
 
+    <EditText
+        android:id="@+id/etGeneros"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="64dp"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@mipmap/password64px"
+
+        android:drawablePadding="12dp"
+        android:drawableTint="@color/white"
+        android:ems="10"
+        android:hint="@string/selecGeneros"
+        android:inputType="text"
+        android:padding="5dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etActores"
+        tools:text="@string/selecGeneros" />
+
+    <ImageView
+        android:id="@+id/flecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/etPeliculas"
+        app:layout_constraintEnd_toEndOf="@+id/etPeliculas"
+        app:layout_constraintTop_toTopOf="@+id/etPeliculas"
+        app:srcCompat="@mipmap/flecha32px" />
+
+    <ImageView
+        android:id="@+id/flecha2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/etActores"
+        app:layout_constraintEnd_toEndOf="@+id/etActores"
+        app:layout_constraintTop_toTopOf="@+id/etActores"
+        app:srcCompat="@mipmap/flecha32px" />
+
+    <ImageView
+        android:id="@+id/flecha3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/etGeneros"
+        app:layout_constraintEnd_toEndOf="@+id/etGeneros"
+        app:layout_constraintTop_toTopOf="@+id/etGeneros"
+        app:srcCompat="@mipmap/flecha32px" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
