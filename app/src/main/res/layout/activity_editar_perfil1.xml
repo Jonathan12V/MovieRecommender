@@ -290,7 +290,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="20dp"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/rojo_guardar"
                 android:fontFamily="@font/roboto_bold"
                 android:text="@string/guardar"
                 android:textColor="@color/white"
