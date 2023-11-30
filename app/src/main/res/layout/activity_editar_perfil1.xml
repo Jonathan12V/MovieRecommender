@@ -196,7 +196,10 @@
                     android:popupBackground="@android:color/white"
                     android:text="@string/perfil_select_tus_peliculas"
                     android:textColor="@color/disabled_text_color"
-                    tools:ignore="LabelFor"></AutoCompleteTextView>
+                    tools:ignore="LabelFor">
+
+
+                </AutoCompleteTextView>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -311,5 +314,8 @@
                 app:layout_constraintTop_toTopOf="@+id/button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

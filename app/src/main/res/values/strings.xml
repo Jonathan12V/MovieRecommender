@@ -86,5 +86,14 @@
     <string name="cancelar">Cancelar</string>
 
     <string name="perfil">Perfil</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="busqueda_pelicula">Busqueda película</string>
+
+    <string name="texto_selecciona">Selecciona hasta 10 peliculas y añadelas a tu perfil</string>
+
+
+
+
 
 </resources>

@@ -49,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:fontFamily="@font/roboto_bold"
+        android:onClick="irRegistro"
         android:text="@string/registrate"
         app:layout_constraintBottom_toBottomOf="@+id/tvNoTienesCuenta"
         app:layout_constraintEnd_toEndOf="parent"
