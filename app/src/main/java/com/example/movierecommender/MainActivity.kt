@@ -28,6 +28,5 @@ class MainActivity : ComponentActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-
     }
 }

@@ -62,4 +62,29 @@
     <string name="perfil_select_tus_actores">Tus Actores</string>
     <string name="perfil_select_tus_generos">Tus Generos</string>
     <string name="perfil_boton_editar">Editar</string>
+
+    <!-- DANIEL -->
+    <string name="usuarioHint">Usuario</string>
+    <string name="passwordHint">Password</string>
+    <string name="iniciarSesion">Iniciar sesión</string>
+    <string name="noTienesCuenta">No tienes cuenta?</string>
+    <string name="registrate">Regístrate!</string>
+    <string name="email">Email</string>
+    <string name="siguiente">Siguiente</string>
+
+    <string name="selecPeliculas">Selec tus peliculas</string>
+    <string name="selecActores">Selec tus actores</string>
+    <string name="selecGeneros">Selec tus géneros</string>
+
+
+    <string name="introduceNombre">Introduce tu nombre</string>
+    <string name="introduceEmail">Introduce tu Email</string>
+    <string name="introduceContraseña">Introduce tu contraseña</string>
+    <string name="contraseña">Contraseña</string>
+
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+
+    <string name="perfil">Perfil</string>
+
 </resources>
