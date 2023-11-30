@@ -63,7 +63,6 @@
     <string name="perfil_select_tus_generos">Tus Generos</string>
     <string name="perfil_boton_editar">Editar</string>
 
-
     <!-- DANIEL -->
     <string name="usuarioHint">Usuario</string>
     <string name="passwordHint">Password</string>
@@ -87,6 +86,5 @@
     <string name="cancelar">Cancelar</string>
 
     <string name="perfil">Perfil</string>
-
 
 </resources>
