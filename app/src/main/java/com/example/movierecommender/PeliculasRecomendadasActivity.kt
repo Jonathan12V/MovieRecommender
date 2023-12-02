@@ -3,8 +3,7 @@ package com.example.movierecommender
 import android.os.Bundle
 import androidx.constraintlayout.widget.ConstraintLayout
 
-class MainActivity : MenuActivity(){
-
+class PeliculasRecomendadasActivity : MenuActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

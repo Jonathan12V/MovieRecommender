@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/activity_header" />
 
     <EditText
         android:id="@+id/searchEditText"
@@ -23,7 +19,7 @@
         android:inputType="text"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/include" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RadioButton
         android:id="@+id/Todo"
@@ -31,7 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:checked="true"
-        android:fontFamily="@font/roboto"
         android:minHeight="48dp"
         android:text="@string/selector_todo"
         android:textSize="15sp"
@@ -43,7 +38,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:fontFamily="@font/roboto"
         android:minHeight="48dp"
         android:text="@string/selector_recomendados"
         android:textSize="15sp"
@@ -51,12 +45,9 @@
         app:layout_constraintTop_toBottomOf="@+id/Todo" />
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recomendados">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/recomendados">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,6 +55,7 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/BoldTitle"
                 android:id="@+id/accion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,7 +63,6 @@
                 android:layout_marginTop="15dp"
                 android:text="@string/lista_genero_accion"
                 android:textSize="17sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/rvAccion"
                 app:layout_constraintTop_toBottomOf="@+id/recomendados" />
 
@@ -85,6 +76,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/accion" />
 
             <TextView
+                style="@style/BoldTitle"
                 android:id="@+id/terror"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -92,7 +84,6 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_terror"
                 android:textSize="17sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/rvTerror"
                 app:layout_constraintTop_toBottomOf="@+id/rvAccion" />
 
@@ -108,6 +99,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/terror" />
 
             <TextView
+                style="@style/BoldTitle"
                 android:id="@+id/comedia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -115,7 +107,6 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_comedia"
                 android:textSize="17sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/rvComedia"
                 app:layout_constraintTop_toBottomOf="@+id/rvTerror" />
 
@@ -132,6 +123,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/comedia" />
 
             <TextView
+                style="@style/BoldTitle"
                 android:id="@+id/romance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -139,7 +131,6 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_romance"
                 android:textSize="17sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/rvRomance"
                 app:layout_constraintTop_toBottomOf="@+id/rvComedia" />
             <!-- Agrega la RecyclerView aquí -->
@@ -154,6 +145,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/romance" />
 
             <TextView
+                style="@style/BoldTitle"
                 android:id="@+id/animacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -161,7 +153,6 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_animacion"
                 android:textSize="17sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/rvAnimacion"
                 app:layout_constraintTop_toBottomOf="@+id/rvRomance" />
             <!-- Agrega la RecyclerView aquí -->
@@ -176,6 +167,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/animacion" />
 
             <TextView
+                style="@style/BoldTitle"
                 android:id="@+id/musica"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -183,7 +175,6 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_musica"
                 android:textSize="17sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/rvMusica"
                 app:layout_constraintTop_toBottomOf="@+id/rvAnimacion" />
             <!-- Agrega la RecyclerView aquí -->
@@ -198,6 +189,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/musica" />
 
             <TextView
+                style="@style/BoldTitle"
                 android:id="@+id/cienciaFiccion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -205,7 +197,6 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_ciencia_ficcion"
                 android:textSize="17sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/rvCienciaFiccion"
                 app:layout_constraintTop_toBottomOf="@+id/rvMusica" />
             <!-- Agrega la RecyclerView aquí -->
@@ -220,6 +211,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/cienciaFiccion" />
 
             <TextView
+                style="@style/BoldTitle"
                 android:id="@+id/misterio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -227,7 +219,6 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_misterio"
                 android:textSize="17sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/rvMisterio"
                 app:layout_constraintTop_toBottomOf="@+id/rvMusica" />
             <!-- Agrega la RecyclerView aquí -->
@@ -242,6 +233,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/misterio" />
 
             <TextView
+                style="@style/BoldTitle"
                 android:id="@+id/fantasia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -249,7 +241,6 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_fantasia"
                 android:textSize="17sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/rvFantasia"
                 app:layout_constraintTop_toBottomOf="@+id/rvMisterio" />
             <!-- Agrega la RecyclerView aquí -->

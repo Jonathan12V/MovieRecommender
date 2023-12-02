@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">MovieRecommender</string>
 
+    <string name="open_drawer">Abrir menú</string>
+    <string name="close_drawer">Cerrar menú</string>
+
     <!-- Layout Mostrar Peliculas Principal -->
     <string name="buscador_placeholder">Buscar películas</string>
     <string name="selector_todo">Todo</string>
