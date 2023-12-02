@@ -11,15 +11,15 @@
         android:id="@+id/editTextText3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="10dp"
         android:layout_marginHorizontal="25dp"
+        android:layout_marginVertical="10dp"
         android:background="@drawable/custom_input"
         android:drawableStart="@mipmap/lupa"
         android:drawablePadding="12dp"
         android:ems="10"
         android:inputType="text"
         android:padding="10dp"
-        android:text="@string/busqueda_pelicula" />
+        android:text="@string/busqueda_actor" />
 
     <TextView
         android:id="@+id/tvMisPeliculas"
@@ -29,18 +29,18 @@
         android:layout_marginVertical="10dp"
         android:layout_weight="0"
         android:fontFamily="@font/roboto_bold"
-        android:text="@string/perfil_select_tus_peliculas"
+        android:text="@string/perfil_select_tus_actores"
         android:textSize="18dp" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/texto_selecciona_pelicula"
         android:layout_marginHorizontal="25dp"
         android:layout_marginVertical="10dp"
         android:layout_weight="0"
-        android:fontFamily="@font/roboto"/>
+        android:fontFamily="@font/roboto"
+        android:text="@string/texto_selecciona_actor" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

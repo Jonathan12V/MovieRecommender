@@ -13,6 +13,8 @@ import com.google.android.material.textfield.TextInputLayout
 class EditPerfilActivity : AppCompatActivity() {
 
     private lateinit var autoCompleteTextView : AutoCompleteTextView
+    private lateinit var autoCompleteTextView2 : AutoCompleteTextView
+    private lateinit var autoCompleteTextView3 : AutoCompleteTextView
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,13 +24,41 @@ class EditPerfilActivity : AppCompatActivity() {
         val textInputLayout = findViewById<TextInputLayout>(R.id.textInputLayout)
         autoCompleteTextView = textInputLayout.findViewById(R.id.autoCompleteTextView)
 
+        val textInputLayout2 = findViewById<TextInputLayout>(R.id.textInputLayout2)
+        autoCompleteTextView2 = textInputLayout.findViewById(R.id.autoCompleteTextView2)
+
+        val textInputLayout3 = findViewById<TextInputLayout>(R.id.textInputLayout3)
+        autoCompleteTextView3 = textInputLayout.findViewById(R.id.autoCompleteTextView3)
+
         autoCompleteTextView.setOnClickListener {
             showPeliculasBottomSheet()
+        }
+
+        autoCompleteTextView2.setOnClickListener {
+            showActoresBottomSheet()
+        }
+
+        autoCompleteTextView3.setOnClickListener {
+            showActoresBottomSheet()
         }
     }
 
     fun showPeliculasBottomSheet() {
         val dialogView = layoutInflater.inflate(R.layout.menu_bottom_peliculas, null)
+        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog.setContentView(dialogView)
+        bottomSheetDialog.show()
+    }
+
+    fun showActoresBottomSheet() {
+        val dialogView = layoutInflater.inflate(R.layout.menu_bottom_actores, null)
+        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog.setContentView(dialogView)
+        bottomSheetDialog.show()
+    }
+
+    fun showGenerosBottomSheet() {
+        val dialogView = layoutInflater.inflate(R.layout.menu_bottom_generos, null)
         val bottomSheetDialog = BottomSheetDialog(this)
         bottomSheetDialog.setContentView(dialogView)
         bottomSheetDialog.show()
