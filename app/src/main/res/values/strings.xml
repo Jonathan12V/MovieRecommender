@@ -60,7 +60,7 @@
     <string name="perfil_preferencias">Preferencias</string>
     <string name="perfil_select_tus_peliculas">Tus Peliculas</string>
     <string name="perfil_select_tus_actores">Tus Actores</string>
-    <string name="perfil_select_tus_generos">Tus Generos</string>
+    <string name="perfil_select_tus_generos">Tus Géneros</string>
     <string name="perfil_boton_editar">Editar</string>
 
     <!-- DANIEL -->
@@ -86,5 +86,18 @@
     <string name="cancelar">Cancelar</string>
 
     <string name="perfil">Perfil</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="busqueda_pelicula">Busqueda película</string>
+    <string name="busqueda_actor">Busqueda actor</string>
+    <string name="busqueda_genero">Busqueda género</string>
+
+    <string name="texto_selecciona_pelicula">Selecciona hasta 10 peliculas y añadelas a tu perfil</string>
+    <string name="texto_selecciona_actor">Selecciona hasta 5 actores y añadelas a tu perfil</string>
+    <string name="texto_selecciona_genero">Selecciona hasta 3 géneros y añadelos a tu perfil</string>
+
+
+
+
 
 </resources>

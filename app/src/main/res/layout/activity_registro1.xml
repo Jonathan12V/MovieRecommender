@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="125dp"
         android:backgroundTint="@color/gris_login"
+        android:onClick="irRegistro2"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/siguiente"
