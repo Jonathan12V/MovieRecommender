@@ -25,10 +25,10 @@ class EditPerfilActivity : AppCompatActivity() {
         autoCompleteTextView = textInputLayout.findViewById(R.id.autoCompleteTextView)
 
         val textInputLayout2 = findViewById<TextInputLayout>(R.id.textInputLayout2)
-        autoCompleteTextView2 = textInputLayout.findViewById(R.id.autoCompleteTextView2)
+        autoCompleteTextView2 = textInputLayout2.findViewById(R.id.autoCompleteTextView2)
 
         val textInputLayout3 = findViewById<TextInputLayout>(R.id.textInputLayout3)
-        autoCompleteTextView3 = textInputLayout.findViewById(R.id.autoCompleteTextView3)
+        autoCompleteTextView3 = textInputLayout3.findViewById(R.id.autoCompleteTextView3)
 
         autoCompleteTextView.setOnClickListener {
             showPeliculasBottomSheet()
@@ -39,7 +39,7 @@ class EditPerfilActivity : AppCompatActivity() {
         }
 
         autoCompleteTextView3.setOnClickListener {
-            showActoresBottomSheet()
+            showGenerosBottomSheet()
         }
     }
 
