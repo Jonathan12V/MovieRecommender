@@ -20,15 +20,16 @@
         android:id="@+id/buttonIniciarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="125dp"
+        android:layout_marginTop="50dp"
         android:backgroundTint="@color/gris_login"
+        android:onClick="irRegistro2"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/siguiente"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/etPassword"
+        app:layout_constraintStart_toStartOf="@+id/etPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
     <EditText
         android:id="@+id/etUser"
@@ -41,12 +42,12 @@
         android:drawableStart="@mipmap/perfil64px"
         android:drawablePadding="12dp"
         android:drawableTint="@color/white"
-        android:textColorHint="@color/white"
         android:ems="10"
         android:hint="@string/usuarioHint"
         android:inputType="text"
         android:padding="5dp"
         android:textColor="#FFFFFF"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagenLogo"
@@ -60,9 +61,8 @@
         android:layout_marginTop="44dp"
         android:layout_marginEnd="64dp"
         android:background="@drawable/custom_input"
-        android:textColorHint="@color/white"
-
         android:drawableStart="@mipmap/email64px"
+
         android:drawablePadding="12dp"
         android:drawableTint="@color/white"
         android:ems="10"
@@ -70,6 +70,7 @@
         android:inputType="textEmailAddress"
         android:padding="5dp"
         android:textColor="#FFFFFF"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUser"

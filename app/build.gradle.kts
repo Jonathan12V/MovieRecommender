@@ -52,18 +52,17 @@ android {
 dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.8.0")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
 
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     implementation("com.google.android.material:material:1.10.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -71,20 +70,21 @@ dependencies {
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     // Implementación Adiciónes para la App
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("com.google.android.material:material:1.10.0")
-
+    implementation("androidx.compose.material3:material3")
     implementation("org.jetbrains.exposed:exposed-core:0.41.1")
     implementation("org.jetbrains.exposed:exposed-dao:0.41.1")
     implementation("org.jetbrains.exposed:exposed-jdbc:0.41.1")
-
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
-
     implementation("androidx.drawerlayout:drawerlayout:1.2.0")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
+
 }

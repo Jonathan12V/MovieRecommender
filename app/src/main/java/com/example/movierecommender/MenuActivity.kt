@@ -17,8 +17,6 @@ abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_header)
 
-        supportActionBar?.hide()
-
         drawerLayout = findViewById(R.id.drawer_layout)
         val navigationView: NavigationView = findViewById(R.id.navigation_view)
 
@@ -44,7 +42,7 @@ abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         when (item.itemId) {
             R.id.accion_perfil -> openActivity(VisualizacionPerfilActivity::class.java)
             R.id.accion_favoritos -> openActivity(PeliculasFavoritasActivity::class.java)
-            R.id.accion_cerrar_sesion -> openActivity(CerrarSesionActivity::class.java)
+            R.id.accion_cerrar_sesion -> openActivity(LoginActivity::class.java)
             // Agregar más casos según sea necesario
         }
 
