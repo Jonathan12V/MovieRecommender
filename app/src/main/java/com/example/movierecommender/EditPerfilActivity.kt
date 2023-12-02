@@ -7,10 +7,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AutoCompleteTextView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputLayout
 
-class EditPerfilActivity : AppCompatActivity() {
+class EditPerfilActivity : MenuActivity() {
 
     private lateinit var autoCompleteTextView : AutoCompleteTextView
     private lateinit var autoCompleteTextView2 : AutoCompleteTextView
@@ -19,7 +20,9 @@ class EditPerfilActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_editar_perfil1)
+
+        val settingsContent = layoutInflater.inflate(R.layout.activity_editar_perfil1, null)
+        findViewById<ConstraintLayout>(R.id.fragment_container).addView(settingsContent)
 
         val textInputLayout = findViewById<TextInputLayout>(R.id.textInputLayout)
         autoCompleteTextView = textInputLayout.findViewById(R.id.autoCompleteTextView)

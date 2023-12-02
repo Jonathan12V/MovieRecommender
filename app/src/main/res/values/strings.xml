@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">MovieRecommender</string>
 
+    <string name="open_drawer">Abrir menú</string>
+    <string name="close_drawer">Cerrar menú</string>
+
     <!-- Layout Mostrar Peliculas Principal -->
     <string name="buscador_placeholder">Buscar películas</string>
     <string name="selector_todo">Todo</string>
@@ -92,12 +95,8 @@
     <string name="busqueda_actor">Busqueda actor</string>
     <string name="busqueda_genero">Busqueda género</string>
 
-    <string name="texto_selecciona_pelicula">Selecciona hasta 10 peliculas y añadelas a tu perfil</string>
-    <string name="texto_selecciona_actor">Selecciona hasta 5 actores y añadelas a tu perfil</string>
+    <string name="texto_selecciona_pelicula">Selecciona hasta 10 peliculas y añadelos a tu perfil</string>
+    <string name="texto_selecciona_actor">Selecciona hasta 5 actores y añadelos a tu perfil</string>
     <string name="texto_selecciona_genero">Selecciona hasta 3 géneros y añadelos a tu perfil</string>
-
-
-
-
 
 </resources>

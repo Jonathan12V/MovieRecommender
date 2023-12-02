@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/accion_perfil"
-        android:title="@string/menu_perfil"
-        android:icon="@mipmap/user"/>
-    <item
-        android:id="@+id/accion_favoritos"
-        android:title="@string/menu_favoritos"
-        android:icon="@mipmap/favorito"/>
-    <item
-        android:id="@+id/accion_cerrar_sesion"
-        android:title="@string/menu_cerrar_sesion"
-        android:icon="@mipmap/cerrar_sesion"/>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group>
+        <item
+            android:id="@+id/accion_perfil"
+            android:title="@string/menu_perfil"
+            android:icon="@mipmap/user"/>
+        <item
+            android:id="@+id/accion_favoritos"
+            android:title="@string/menu_favoritos"
+            android:icon="@mipmap/favorito"/>
+        <item
+            android:id="@+id/accion_cerrar_sesion"
+            android:title="@string/menu_cerrar_sesion"
+            android:icon="@mipmap/cerrar_sesion"/>
+    </group>
+    <item android:title="Tema oscuro">
+        <menu>
+            <group>
+                <item
+                    android:id="@+id/radio_tema_claro"
+                    android:title="@string/menu_noche_clara"
+                    android:checked="true"
+                    app:actionViewClass="androidx.appcompat.widget.AppCompatRadioButton"/>
+                <item
+                    android:id="@+id/radio_tema_oscuro"
+                    android:title="@string/menu_noche_oscura"
+                    app:actionViewClass="androidx.appcompat.widget.AppCompatRadioButton"/>
+            </group>
+        </menu>
+    </item>
 </menu>

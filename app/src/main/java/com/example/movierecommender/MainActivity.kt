@@ -1,32 +1,14 @@
 package com.example.movierecommender
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.widget.Toast
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : ComponentActivity() {
-
+class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_peliculas_todas)
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu_main, menu);
-        return true;
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.accion_favoritos -> {
-                Toast.makeText(this, "Hola", Toast.LENGTH_LONG).show();
-                //setContentView(R.layout.activity_peliculas_favoritas)
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
     }
 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="nav_menu_icon_size">24dp</dimen> <!-- Tamaño del icono -->
+    <dimen name="nav_menu_text_size">18sp</dimen> <!-- Tamaño del texto -->
+    <dimen name="nav_menu_item_padding">8dp</dimen> <!-- Padding para separación -->
+</resources>
