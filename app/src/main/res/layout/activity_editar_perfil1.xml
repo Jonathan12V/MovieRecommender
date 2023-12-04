@@ -96,7 +96,6 @@
                 android:inputType="textPassword"
                 android:minHeight="48dp"
 
-                android:text="@string/introduceContraseña"
                 android:textColor="@color/disabled_text_color"
                 app:layout_constraintBottom_toBottomOf="@+id/tvContraseña"
                 app:layout_constraintStart_toStartOf="@+id/etEmail"
