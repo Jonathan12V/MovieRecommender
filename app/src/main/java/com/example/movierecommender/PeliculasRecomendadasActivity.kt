@@ -1,7 +1,6 @@
 package com.example.movierecommender
 
 import android.os.Bundle
-import android.widget.Button
 import android.widget.RadioButton
 import androidx.constraintlayout.widget.ConstraintLayout
 
