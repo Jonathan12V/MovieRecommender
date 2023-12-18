@@ -3,6 +3,7 @@ package com.example.movierecommender
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 
 class VisualizacionPerfilActivity : MenuActivity() {
@@ -17,6 +18,7 @@ class VisualizacionPerfilActivity : MenuActivity() {
         btnEditarPerfil.setOnClickListener {
             val intent = Intent(this, EditPerfilActivity::class.java)
             startActivity(intent)
+            Toast.makeText(this, "Editar Perfil", Toast.LENGTH_SHORT).show()
         }
 
     }

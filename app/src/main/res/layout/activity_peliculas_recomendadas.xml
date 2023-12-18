@@ -21,48 +21,64 @@
         app:layout_constraintTop_toTopOf="parent"
         android:autofillHints="" />
 
-    <RadioButton
-        android:id="@+id/Todo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:minHeight="48dp"
-        android:text="@string/selector_todo"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/searchEditText"
-        app:layout_constraintTop_toBottomOf="@+id/searchEditText" />
-
-    <RadioButton
-        android:id="@+id/recomendados"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:checked="true"
-        android:minHeight="48dp"
-        android:text="@string/selector_recomendados"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="@+id/Todo"
-        app:layout_constraintTop_toBottomOf="@+id/Todo" />
-
     <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
+        android:layout_width="410dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/recomendados">
+        app:layout_constrainedHeight="true"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchEditText">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <RadioButton
+                android:id="@+id/Todo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:minHeight="48dp"
+                android:text="@string/selector_todo"
+                android:textSize="15sp"
+                android:layout_marginStart="15dp"
+                app:layout_constraintStart_toStartOf="@+id/searchEditText"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <RadioButton
+                android:id="@+id/recomendados"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:checked="true"
+                android:minHeight="48dp"
+                android:text="@string/selector_recomendados"
+                android:textSize="15sp"
+                android:layout_marginStart="15dp"
+                app:layout_constraintStart_toStartOf="@+id/Todo"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <!-- Agrega esto en tu layout XML -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                style="?android:attr/progressBarStyleLarge" />
             <TextView
                 android:id="@+id/accion"
+                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
                 android:text="@string/lista_genero_accion"
                 android:textSize="17sp"
-                style="@style/BoldTitle"
                 app:layout_constraintStart_toStartOf="@+id/rvAccion"
                 app:layout_constraintTop_toBottomOf="@+id/recomendados" />
 
@@ -71,19 +87,19 @@
                 android:id="@+id/rvAccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="1dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/accion" />
 
             <TextView
                 android:id="@+id/terror"
+                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_terror"
                 android:textSize="17sp"
-                style="@style/BoldTitle"
                 app:layout_constraintStart_toStartOf="@+id/rvTerror"
                 app:layout_constraintTop_toBottomOf="@+id/rvAccion" />
 
@@ -92,7 +108,7 @@
                 android:id="@+id/rvTerror"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="1dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -100,13 +116,13 @@
 
             <TextView
                 android:id="@+id/comedia"
+                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_comedia"
                 android:textSize="17sp"
-                style="@style/BoldTitle"
                 app:layout_constraintStart_toStartOf="@+id/rvComedia"
                 app:layout_constraintTop_toBottomOf="@+id/rvTerror" />
 
@@ -116,7 +132,7 @@
                 android:id="@+id/rvComedia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="1dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -124,13 +140,13 @@
 
             <TextView
                 android:id="@+id/romance"
+                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_romance"
                 android:textSize="17sp"
-                style="@style/BoldTitle"
                 app:layout_constraintStart_toStartOf="@+id/rvRomance"
                 app:layout_constraintTop_toBottomOf="@+id/rvComedia" />
             <!-- Agrega la RecyclerView aquí -->
@@ -138,7 +154,7 @@
                 android:id="@+id/rvRomance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="1dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -146,13 +162,13 @@
 
             <TextView
                 android:id="@+id/animacion"
+                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_animacion"
                 android:textSize="17sp"
-                style="@style/BoldTitle"
                 app:layout_constraintStart_toStartOf="@+id/rvAnimacion"
                 app:layout_constraintTop_toBottomOf="@+id/rvRomance" />
             <!-- Agrega la RecyclerView aquí -->
@@ -160,7 +176,7 @@
                 android:id="@+id/rvAnimacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="1dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -168,13 +184,13 @@
 
             <TextView
                 android:id="@+id/musica"
+                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_musica"
                 android:textSize="17sp"
-                style="@style/BoldTitle"
                 app:layout_constraintStart_toStartOf="@+id/rvMusica"
                 app:layout_constraintTop_toBottomOf="@+id/rvAnimacion" />
             <!-- Agrega la RecyclerView aquí -->
@@ -182,7 +198,7 @@
                 android:id="@+id/rvMusica"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="1dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -190,13 +206,13 @@
 
             <TextView
                 android:id="@+id/cienciaFiccion"
+                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_ciencia_ficcion"
                 android:textSize="17sp"
-                style="@style/BoldTitle"
                 app:layout_constraintStart_toStartOf="@+id/rvCienciaFiccion"
                 app:layout_constraintTop_toBottomOf="@+id/rvMusica" />
             <!-- Agrega la RecyclerView aquí -->
@@ -204,7 +220,7 @@
                 android:id="@+id/rvCienciaFiccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="1dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -212,13 +228,13 @@
 
             <TextView
                 android:id="@+id/misterio"
+                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_misterio"
                 android:textSize="17sp"
-                style="@style/BoldTitle"
                 app:layout_constraintStart_toStartOf="@+id/rvMisterio"
                 app:layout_constraintTop_toBottomOf="@+id/rvMusica" />
             <!-- Agrega la RecyclerView aquí -->
@@ -226,7 +242,7 @@
                 android:id="@+id/rvMisterio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="1dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -234,13 +250,13 @@
 
             <TextView
                 android:id="@+id/fantasia"
+                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_fantasia"
                 android:textSize="17sp"
-                style="@style/BoldTitle"
                 app:layout_constraintStart_toStartOf="@+id/rvFantasia"
                 app:layout_constraintTop_toBottomOf="@+id/rvMisterio" />
             <!-- Agrega la RecyclerView aquí -->
@@ -248,7 +264,7 @@
                 android:id="@+id/rvFantasia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="1dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

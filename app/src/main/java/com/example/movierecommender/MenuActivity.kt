@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.movierecommender.views.PeliculasRecomendadasActivity
 import com.google.android.material.navigation.NavigationView
 
 abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout
+    private var manualClose = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -26,6 +29,7 @@ abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                 drawerLayout.closeDrawer(GravityCompat.END)
             } else {
                 drawerLayout.openDrawer(GravityCompat.END)
+
             }
         }
 
@@ -33,19 +37,49 @@ abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         homePeliculas.setOnClickListener {
             val intent = Intent(this, PeliculasRecomendadasActivity::class.java)
             startActivity(intent)
+            Toast.makeText(this, "Inicio - peliculas recomendadas", Toast.LENGTH_SHORT).show()
         }
 
         navigationView.setNavigationItemSelectedListener(this)
+
+        // Agregar listener para detectar la apertura y cierre del DrawerLayout
+        drawerLayout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
+            override fun onDrawerOpened(drawerView: android.view.View) {
+                super.onDrawerOpened(drawerView)
+                // El menú se ha abierto manualmente
+                manualClose = false
+                // El menú se ha abierto manualmente
+                Toast.makeText(this@MenuActivity, "Menú abierto", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onDrawerClosed(drawerView: android.view.View) {
+                super.onDrawerClosed(drawerView)
+                // El menú se ha cerrado manualmente
+                if (!manualClose) {
+                    Toast.makeText(this@MenuActivity, "Menú cerrado", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.accion_perfil -> openActivity(VisualizacionPerfilActivity::class.java)
-            R.id.accion_favoritos -> openActivity(PeliculasFavoritasActivity::class.java)
-            R.id.accion_cerrar_sesion -> openActivity(LoginActivity::class.java)
+            R.id.accion_perfil -> {
+                openActivity(VisualizacionPerfilActivity::class.java)
+                Toast.makeText(this, "Visualización perfil", Toast.LENGTH_SHORT).show();
+            }
+            R.id.accion_favoritos -> {
+                openActivity(PeliculasFavoritasActivity::class.java)
+                Toast.makeText(this, "Tus peliculas favoritas", Toast.LENGTH_SHORT).show();
+            }
+            R.id.accion_cerrar_sesion -> {
+                openActivity(LoginActivity::class.java)
+                Toast.makeText(this, "Sesión cerrada", Toast.LENGTH_SHORT).show();
+            }
             // Agregar más casos según sea necesario
         }
 
+        manualClose = true
         drawerLayout.closeDrawer(GravityCompat.END)
         return true
     }
