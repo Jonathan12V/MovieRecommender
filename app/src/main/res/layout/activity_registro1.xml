@@ -17,12 +17,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonIniciarSesion"
+        android:id="@+id/buttonSiguiente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/gris_login"
-        android:onClick="irRegistro2"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/siguiente"
