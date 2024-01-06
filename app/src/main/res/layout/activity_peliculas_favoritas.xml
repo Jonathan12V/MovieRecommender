@@ -37,10 +37,25 @@
         app:layout_constraintTop_toBottomOf="@id/imageView" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPeliculasFavoritas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view5" />
+
+    <!-- TextView para mensajes cuando no hay resultados -->
+    <TextView
+        android:id="@+id/noResultsFavorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/peliculas_no_encontradas"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewPeliculasFavoritas" />
 </androidx.constraintlayout.widget.ConstraintLayout>

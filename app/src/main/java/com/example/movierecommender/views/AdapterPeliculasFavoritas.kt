@@ -3,41 +3,35 @@ package com.example.movierecommender.views
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.movierecommender.R
 import com.example.movierecommender.core.Constantes
 import com.example.movierecommender.models.PeliculaModel
-import com.example.movierecommender.repository.MovieRepository
 
-class AdapterPeliculas(
+class AdapterPeliculasFavoritas(
     val context: Context,
     var listaPeliculas: List<PeliculaModel>,
-    private var corazonClickListener: OnCorazonClickListener,
-    private var movieRepository: MovieRepository
-): RecyclerView.Adapter<AdapterPeliculas.ViewHolder>() {
+    private var corazonClickListener: OnCorazonClickListener
+): RecyclerView.Adapter<AdapterPeliculasFavoritas.ViewHolder>() {
 
     interface OnCorazonClickListener {
         fun onCorazonClick(pelicula: PeliculaModel)
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val ivPoster = itemView.findViewById(R.id.iv_movie) as ImageView
-        val ivCorazon = itemView.findViewById(R.id.iv_corazon) as ImageView
-        val tvMovieName = itemView.findViewById(R.id.tv_movie_name) as TextView
-        val tvMovieRating = itemView.findViewById(R.id.tv_movie_rating) as TextView
+        val ivPoster = itemView.findViewById(R.id.iv_movie_favorite) as ImageView
+        val ivCorazon = itemView.findViewById(R.id.iv_corazon_favorite) as ImageView
+        val tvMovieName = itemView.findViewById(R.id.tv_movie_name_favorite) as TextView
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val vista = LayoutInflater.from(parent.context).inflate(R.layout.item_rv_peliculas, parent, false)
+        val vista = LayoutInflater.from(parent.context).inflate(R.layout.item_rv_peliculas_favoritas, parent, false)
         return ViewHolder(vista)
     }
 
@@ -50,34 +44,12 @@ class AdapterPeliculas(
             .apply(RequestOptions().override(Constantes.IMAGEN_ANCHO, Constantes.IMAGEN_ALTO))
             .into(holder.ivPoster)
 
-        // Verifica si la película está en la base de datos y si es favorita
-        val esFavorito = movieRepository.movieExists(pelicula.id.toInt())
-        if (esFavorito) {
-            // La película está en la base de datos, establece el corazón en rojo
-            holder.ivCorazon.setImageResource(R.mipmap.corazon_rojo)
-        }else {
-            // La película no está en la base de datos, establece el corazón en blanco
-            holder.ivCorazon.setImageResource(R.mipmap.corazon)
-        }
-
         // Establece el nombre de la película en el TextView
         holder.tvMovieName.text = pelicula.nombrePelicula
-        holder.tvMovieRating.text = pelicula.votoPromedio
-
 
         holder.ivCorazon.setOnClickListener {
             // Llama al método del listener cuando se hace clic en el corazón
             corazonClickListener.onCorazonClick(pelicula)
-
-            // Verificar si la película está en la base de datos y si es favorita
-            val esFavoritoActualizado  = movieRepository.movieExists(pelicula.id.toInt())
-            if (!esFavoritoActualizado ) {
-                // Cambiar el recurso de origen del corazón a blanco (no marcado)
-                holder.ivCorazon.setImageResource(R.mipmap.corazon)
-            } else {
-                // Cambiar el recurso de origen del corazón a rojo (no marcado)
-                holder.ivCorazon.setImageResource(R.mipmap.corazon_rojo)
-            }
         }
 
         holder.itemView.setOnClickListener {
@@ -98,5 +70,14 @@ class AdapterPeliculas(
 
     fun setOnCorazonClickListener(listener: OnCorazonClickListener) {
         corazonClickListener = listener
+    }
+    // Agrega este método para eliminar una película de la lista
+    // Método para eliminar una película de la lista
+    fun removePelicula(pelicula: PeliculaModel) {
+        val position = listaPeliculas.indexOf(pelicula)
+        if (position != -1) {
+            listaPeliculas = listaPeliculas.toMutableList().apply { removeAt(position) }
+            notifyItemRemoved(position)
+        }
     }
 }

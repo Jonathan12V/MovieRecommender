@@ -79,6 +79,7 @@
                 android:layout_marginTop="15dp"
                 android:text="@string/lista_genero_accion"
                 android:textSize="17sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/rvAccion"
                 app:layout_constraintTop_toBottomOf="@+id/recomendados" />
 
@@ -100,6 +101,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_terror"
                 android:textSize="17sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/rvTerror"
                 app:layout_constraintTop_toBottomOf="@+id/rvAccion" />
 
@@ -123,6 +125,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_comedia"
                 android:textSize="17sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/rvComedia"
                 app:layout_constraintTop_toBottomOf="@+id/rvTerror" />
 
@@ -147,6 +150,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_romance"
                 android:textSize="17sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/rvRomance"
                 app:layout_constraintTop_toBottomOf="@+id/rvComedia" />
             <!-- Agrega la RecyclerView aquí -->
@@ -169,6 +173,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_animacion"
                 android:textSize="17sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/rvAnimacion"
                 app:layout_constraintTop_toBottomOf="@+id/rvRomance" />
             <!-- Agrega la RecyclerView aquí -->
@@ -191,6 +196,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_musica"
                 android:textSize="17sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/rvMusica"
                 app:layout_constraintTop_toBottomOf="@+id/rvAnimacion" />
             <!-- Agrega la RecyclerView aquí -->
@@ -213,6 +219,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_ciencia_ficcion"
                 android:textSize="17sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/rvCienciaFiccion"
                 app:layout_constraintTop_toBottomOf="@+id/rvMusica" />
             <!-- Agrega la RecyclerView aquí -->
@@ -235,6 +242,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_misterio"
                 android:textSize="17sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/rvMisterio"
                 app:layout_constraintTop_toBottomOf="@+id/rvMusica" />
             <!-- Agrega la RecyclerView aquí -->
@@ -257,6 +265,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/lista_genero_fantasia"
                 android:textSize="17sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/rvFantasia"
                 app:layout_constraintTop_toBottomOf="@+id/rvMisterio" />
             <!-- Agrega la RecyclerView aquí -->

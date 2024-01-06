@@ -47,7 +47,7 @@ class PeliculasViewModel : ViewModel() {
     private suspend fun obtenerPagina(page: Int): Boolean {
         val responsePage = RetrofitClient.webService.obtenerCartelera(Constantes.API_KEY, page)
         val movies = responsePage.body()?.resultados
-
+ 
         if (!movies.isNullOrEmpty()) {
             // Agregar películas por género
             withContext(Dispatchers.Main) {

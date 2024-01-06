@@ -14,12 +14,14 @@ interface WebService {
     @GET("discover/movie")
     suspend fun obtenerCartelera(
         @Query("api_key") apiKey: String,
-        @Query("page") page: Int
+        @Query("page") page: Int,
+        @Query("language") language: String = "es-ES"
     ): Response<PeliculasResponse>
 
     @GET("movie/{movie_id}")
     fun getMoviedetalles(
         @Path("movie_id") id: Int,
-        @Query("api_key") apiKey: String
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String = "es-ES"
     ): Call<DetallesPeliculasModel>
 }
