@@ -193,8 +193,6 @@ class PeliculasRecomendadasActivity : MenuActivity(), AdapterPeliculas.OnCorazon
     }
 
     override fun onCorazonClick(pelicula: PeliculaModel) {
-        val ivCorazon = findViewById<ImageView>(R.id.iv_corazon)
-
         // Verificar si la película ya está en la base de datos
         if (movieRepository.movieExists(1, pelicula.id.toInt())) {
             // Película ya existe en la base de datos, eliminarla

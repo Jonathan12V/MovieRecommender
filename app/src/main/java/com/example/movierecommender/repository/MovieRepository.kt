@@ -13,7 +13,8 @@ import com.google.gson.reflect.TypeToken
 
 class MovieRepository(context: Context) : SQLiteOpenHelper(context, "movie_recommender.db", null, 2) {
     override fun onCreate(db: SQLiteDatabase?) {
-        // No es necesario crear la tabla "movie" ya que ahora se almacena las peliculas favoritas
+        // No es necesario crear una nueva tabla para las peliculas
+        // ya que ahora se almacena las peliculas favoritas
         // directamente en el campo "peliculas_favoritas" de la tabla "user".
     }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -50,7 +51,7 @@ class MovieRepository(context: Context) : SQLiteOpenHelper(context, "movie_recom
 
         var deletedRows = 0
 
-        try {
+        try {445
             // Obtener los datos actuales del usuario
             val getUserQuery = "SELECT * FROM user WHERE id = ?"
             val cursor = db.rawQuery(getUserQuery, arrayOf(userId.toString()))
