@@ -6,19 +6,24 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.movierecommender.models.PeliculaModel
+import com.google.gson.Gson
 
 class UserRepository(context: Context) :
-    SQLiteOpenHelper(context, "movie_recommender.db", null, 1) {
+    SQLiteOpenHelper(context, "movie_recommender.db", null, 2) {
     override fun onCreate(db: SQLiteDatabase?) {
         val createTableStatement =
-            "CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR(20), email VARCHAR(50), password VARCHAR(30))";
+            "CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR(20), email VARCHAR(50), password VARCHAR(30), peliculas_favoritas TEXT)";
         if (db != null) {
             db.execSQL(createTableStatement)
         }
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        TODO("Not yet implemented")
+        if (db != null) {
+            db.execSQL("DROP TABLE IF EXISTS user")
+            onCreate(db)
+        }
     }
 
     fun addUser(user: String, email: String, password: String): Long {
@@ -28,6 +33,9 @@ class UserRepository(context: Context) :
         cv.put("user", user)
         cv.put("email", email)
         cv.put("password", password)
+        val gson = Gson()
+        val movieListJson = gson.toJson(emptyList<PeliculaModel>())
+        cv.put("peliculas_favoritas", movieListJson)
 
         return db.insert("user", null, cv)
     }

@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.movierecommender.repository.UserRepository
+import com.example.movierecommender.views.PeliculasRecomendadasActivity
 
 class LoginActivity : AppCompatActivity() {
 

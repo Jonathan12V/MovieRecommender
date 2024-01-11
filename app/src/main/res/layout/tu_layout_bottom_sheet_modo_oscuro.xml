@@ -1,0 +1,82 @@
+<!-- res/layout/bottom_sheet_modo_oscuro.xml -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:id="@+id/btnCerrar"
+        android:layout_width="34dp"
+        android:layout_height="6dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#CCCCCC"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal" />
+
+    <!-- Título: Modo Oscuro -->
+    <TextView
+        android:id="@+id/tvModoOscuro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modo Oscuro"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- RadioButtons para Modo Oscuro -->
+    <RadioGroup
+        android:id="@+id/rgModoOscuro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rbDesactivado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Desactivado"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/rbActivado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Activado" />
+    </RadioGroup>
+
+    <!-- Título: Tema Oscuro -->
+    <TextView
+        android:id="@+id/tvTemaOscuro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tema Oscuro"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- RadioButtons para Tema Oscuro -->
+    <RadioGroup
+        android:id="@+id/rgTemaOscuro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rbNocheClara"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Noche Clara"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/rbNocheOscura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Noche Oscura" />
+    </RadioGroup>
+
+</LinearLayout>

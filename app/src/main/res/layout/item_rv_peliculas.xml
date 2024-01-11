@@ -6,13 +6,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_question_image"
         android:layout_width="180dp"
         android:layout_height="250dp"
-        android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:baselineAligned="false"
         android:elevation="12dp"
@@ -87,7 +87,7 @@
         android:maxLines="1"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="@+id/cv_question_image"
-        app:layout_constraintStart_toStartOf="@+id/cv_question_image"
+        app:layout_constraintStart_toStartOf="@+id/iv_star"
         app:layout_constraintTop_toBottomOf="@+id/tv_movie_rating"
         tools:text="@string/nombre_pelicula" />
 </androidx.constraintlayout.widget.ConstraintLayout>
