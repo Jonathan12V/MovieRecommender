@@ -26,7 +26,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CerrarSesionActivity"/>
         <activity android:name=".VisualizacionPerfilActivity"/>
         <activity android:name=".PeliculasFavoritasActivity" />
         <activity android:name=".views.PeliculasRecomendadasActivity" />

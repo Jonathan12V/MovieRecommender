@@ -51,7 +51,7 @@ class AdapterPeliculas(
             .into(holder.ivPoster)
 
         // Verifica si la película está en la base de datos y si es favorita
-        val esFavorito = movieRepository.movieExists(pelicula.id.toInt())
+        val esFavorito = movieRepository.movieExists(1, pelicula.id.toInt())
         if (esFavorito) {
             // La película está en la base de datos, establece el corazón en rojo
             holder.ivCorazon.setImageResource(R.mipmap.corazon_rojo)
@@ -70,7 +70,7 @@ class AdapterPeliculas(
             corazonClickListener.onCorazonClick(pelicula)
 
             // Verificar si la película está en la base de datos y si es favorita
-            val esFavoritoActualizado  = movieRepository.movieExists(pelicula.id.toInt())
+            val esFavoritoActualizado  = movieRepository.movieExists(1, pelicula.id.toInt())
             if (!esFavoritoActualizado ) {
                 // Cambiar el recurso de origen del corazón a blanco (no marcado)
                 holder.ivCorazon.setImageResource(R.mipmap.corazon)
@@ -78,6 +78,9 @@ class AdapterPeliculas(
                 // Cambiar el recurso de origen del corazón a rojo (no marcado)
                 holder.ivCorazon.setImageResource(R.mipmap.corazon_rojo)
             }
+
+            // Notificar al RecyclerView que el ítem en la posición ha cambiado
+            notifyItemChanged(position)
         }
 
         holder.itemView.setOnClickListener {

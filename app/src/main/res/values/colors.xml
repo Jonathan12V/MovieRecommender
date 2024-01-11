@@ -15,5 +15,12 @@
     <color name="gris_login">#808080</color>
 
     <color name="rojo_guardar">#B71C1C</color>
+    <color name="colorDeleteBackground">#FF0000</color>
+
+    <!-- Define tus colores aquí -->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
 
 </resources>

@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movierecommender.MenuActivity
@@ -195,13 +196,13 @@ class PeliculasRecomendadasActivity : MenuActivity(), AdapterPeliculas.OnCorazon
         val ivCorazon = findViewById<ImageView>(R.id.iv_corazon)
 
         // Verificar si la película ya está en la base de datos
-        if (movieRepository.movieExists(pelicula.id.toInt())) {
+        if (movieRepository.movieExists(1, pelicula.id.toInt())) {
             // Película ya existe en la base de datos, eliminarla
-            movieRepository.deleteMovie(pelicula.id.toInt())
+            movieRepository.deleteMovie(1, pelicula.id.toInt())
             Toast.makeText(this, "Película eliminada de favoritos", Toast.LENGTH_SHORT).show()
         } else {
             // Película no existe en la base de datos, añadirla
-            val result = movieRepository.addMovie(pelicula.id, pelicula.nombrePelicula, pelicula.poster)
+            val result = movieRepository.addMovie(pelicula.id, pelicula.nombrePelicula, pelicula.poster, 1)
 
             if (result != -1L) {
                 Toast.makeText(this, "Película añadida a la base de datos", Toast.LENGTH_SHORT).show()
