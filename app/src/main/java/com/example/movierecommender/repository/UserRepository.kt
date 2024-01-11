@@ -1,5 +1,6 @@
 package com.example.movierecommender.repository
 
+import UserInfo
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
@@ -62,4 +63,73 @@ class UserRepository(context: Context) :
         }
     }
 
+    fun cambiarCampos(user: String, email: String, password: String) {
+        val db = this.writableDatabase
+
+        if (!password.isEmpty()) {
+            val updatePasswordQuery = "UPDATE user SET password=? WHERE user=?"
+            db.execSQL(updatePasswordQuery, arrayOf(password, UserInfo.username))
+        }
+
+        if (!user.isEmpty()) {
+            val updateUserQuery = "UPDATE user SET user=? WHERE user=?"
+            db.execSQL(updateUserQuery, arrayOf(user, UserInfo.username))
+            UserInfo.username = user;
+        }
+
+        if (!email.isEmpty()) {
+            val updateEmailQuery = "UPDATE user SET email=? WHERE user=?"
+            db.execSQL(updateEmailQuery, arrayOf(email, UserInfo.username))
+        }
+    }
+
+    @SuppressLint("Range")
+    fun verEmail(): String {
+        val db = this.readableDatabase
+        var email = ""
+
+        val query = "SELECT email FROM user WHERE user=?"
+        val cursor = db.rawQuery(query, arrayOf(UserInfo.username))
+
+        if (cursor.moveToFirst()) {
+            email = cursor.getString(cursor.getColumnIndex("email"))
+        }
+
+        cursor.close()
+        db.close()
+
+        return email
+    }
+
+    @SuppressLint("Range")
+    fun getIdUser(user: String): Long {
+        val db = this.readableDatabase
+        val query = "SELECT id FROM USER WHERE user=?"
+
+        val cursor = db.rawQuery(query, arrayOf(user))
+
+        var userId: Long = -1
+
+        if (cursor.moveToFirst()) {
+            // Si hay al menos una fila, obtenemos el valor del ID
+            userId = cursor.getLong(cursor.getColumnIndex("id"))
+        }
+
+        // Cerramos el cursor después de usarlo
+        cursor.close()
+
+        return userId
+    }
+
+
+    //Metodos para ver que el usuario o el email no este ya en la base de datos
+    fun checkUser(user: String): Boolean {
+
+        return false;
+    }
+
+    fun checkEmail(user: String): Boolean {
+
+        return false;
+    }
 }

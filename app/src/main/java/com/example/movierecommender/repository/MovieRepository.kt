@@ -21,7 +21,7 @@ class MovieRepository(context: Context) : SQLiteOpenHelper(context, "movie_recom
         TODO("Not yet implemented")
     }
     @SuppressLint("Range")
-    fun movieExists(userId: Int, movieId: Int): Boolean {
+    fun movieExists(userId: Long, movieId: Int): Boolean {
         val db = this.readableDatabase
         val query = "SELECT peliculas_favoritas FROM user WHERE id = ?"
         val cursor = db.rawQuery(query, arrayOf(userId.toString()))
@@ -45,7 +45,7 @@ class MovieRepository(context: Context) : SQLiteOpenHelper(context, "movie_recom
         return exists
     }
     @SuppressLint("Range")
-    fun deleteMovie(userId: Int, movieId: Int): Int {
+    fun deleteMovie(userId: Long, movieId: Int): Int {
         val db = this.writableDatabase
         db.beginTransaction()
 
@@ -100,7 +100,7 @@ class MovieRepository(context: Context) : SQLiteOpenHelper(context, "movie_recom
     }
 
     @SuppressLint("Range")
-    fun addMovie(movieId: Int, movieName: String, posterUrl: String, userId: Int): Long {
+    fun addMovie(movieId: Int, movieName: String, posterUrl: String, userId: Long): Long {
         val db = this.writableDatabase
 
         // Obtener los datos actuales del usuario
@@ -145,7 +145,7 @@ class MovieRepository(context: Context) : SQLiteOpenHelper(context, "movie_recom
     }
 
     @SuppressLint("Range")
-    fun getMovies(userId: Int): List<PeliculaModel> {
+    fun getMovies(userId: Long): List<PeliculaModel> {
         val movies = mutableListOf<PeliculaModel>()
         val db = this.readableDatabase
         val query = "SELECT peliculas_favoritas FROM user WHERE id = ?"

@@ -32,13 +32,13 @@ class PeliculasFavoritasActivity : MenuActivity() {
         movieRepository = MovieRepository(this)
 
         // Obtiene la lista de películas favoritas desde la base de datos
-        val peliculasFavoritas = movieRepository.getMovies(1)
+        val peliculasFavoritas = movieRepository.getMovies(UserInfo.id)
 
         // Inicializa el AdapterPeliculasFavoritas con la lista de películas favoritas
         adapterPeliculasFavoritas = AdapterPeliculasFavoritas(this, peliculasFavoritas, object : AdapterPeliculasFavoritas.OnCorazonClickListener {
             override fun onCorazonClick(pelicula: PeliculaModel) {
                 // Eliminar la película de la base de datos
-                movieRepository.deleteMovie(1, pelicula.id.toInt())
+                movieRepository.deleteMovie(UserInfo.id, pelicula.id.toInt())
                 // Eliminar la película de la lista del adaptador
                 adapterPeliculasFavoritas.removePelicula(pelicula)
 

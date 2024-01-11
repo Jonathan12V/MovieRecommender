@@ -1,6 +1,7 @@
 // PeliculasRecomendadasActivity.kt
 package com.example.movierecommender.views
 
+import UserInfo
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -194,13 +195,13 @@ class PeliculasRecomendadasActivity : MenuActivity(), AdapterPeliculas.OnCorazon
 
     override fun onCorazonClick(pelicula: PeliculaModel) {
         // Verificar si la película ya está en la base de datos
-        if (movieRepository.movieExists(1, pelicula.id.toInt())) {
+        if (movieRepository.movieExists(UserInfo.id, pelicula.id.toInt())) {
             // Película ya existe en la base de datos, eliminarla
-            movieRepository.deleteMovie(1, pelicula.id.toInt())
+            movieRepository.deleteMovie(UserInfo.id, pelicula.id.toInt())
             Toast.makeText(this, "Película eliminada de favoritos", Toast.LENGTH_SHORT).show()
         } else {
             // Película no existe en la base de datos, añadirla
-            val result = movieRepository.addMovie(pelicula.id, pelicula.nombrePelicula, pelicula.poster, 1)
+            val result = movieRepository.addMovie(pelicula.id, pelicula.nombrePelicula, pelicula.poster, UserInfo.id)
 
             if (result != -1L) {
                 Toast.makeText(this, "Película añadida a la base de datos", Toast.LENGTH_SHORT).show()
