@@ -1,5 +1,6 @@
 package com.example.movierecommender
 
+import UserInfo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,7 +21,6 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var userRepository: UserRepository
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -37,6 +37,10 @@ class LoginActivity : AppCompatActivity() {
             val check = userRepository.checkUser(etUser.text.toString(), etPassword.text.toString())
 
             if (check == 1) {
+
+                UserInfo.username = etUser.text.toString()
+                UserInfo.id = userRepository.getIdUser(etUser.text.toString())
+
                 val intent = Intent(this, PeliculasRecomendadasActivity::class.java)
                 startActivity(intent)
             } else if (check == 2) {
@@ -56,6 +60,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun irRegistro(view: View) {
+
         val intent = Intent(this, Register1Activity::class.java)
         startActivity(intent)
     }
