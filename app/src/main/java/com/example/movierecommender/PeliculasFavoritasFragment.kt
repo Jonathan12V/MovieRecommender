@@ -1,41 +1,44 @@
 package com.example.movierecommender
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movierecommender.models.PeliculaModel
 import com.example.movierecommender.repository.MovieRepository
 import com.example.movierecommender.views.AdapterPeliculasFavoritas
-import androidx.recyclerview.widget.LinearLayoutManager
 
-class PeliculasFavoritasActivity : MenuActivity() {
+class PeliculasFavoritasFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapterPeliculasFavoritas: AdapterPeliculasFavoritas
     private lateinit var movieRepository: MovieRepository
     private lateinit var noResultsTextView: TextView
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-        val settingsContent = layoutInflater.inflate(R.layout.activity_peliculas_favoritas, null)
-        findViewById<ConstraintLayout>(R.id.fragment_container).addView(settingsContent)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.activity_peliculas_favoritas, container, false)
 
-        recyclerView = findViewById(R.id.recyclerViewPeliculasFavoritas)
-        recyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
-
+        recyclerView = view.findViewById(R.id.recyclerViewPeliculasFavoritas)
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
         // Inicializa el MovieRepository
-        movieRepository = MovieRepository(this)
+        movieRepository = MovieRepository(requireContext())
 
         // Obtiene la lista de películas favoritas desde la base de datos
         val peliculasFavoritas = movieRepository.getMovies(UserInfo.id)
 
         // Inicializa el AdapterPeliculasFavoritas con la lista de películas favoritas
-        adapterPeliculasFavoritas = AdapterPeliculasFavoritas(this, peliculasFavoritas, object : AdapterPeliculasFavoritas.OnCorazonClickListener {
+        adapterPeliculasFavoritas = AdapterPeliculasFavoritas(requireContext(), peliculasFavoritas, object : AdapterPeliculasFavoritas.OnCorazonClickListener {
             override fun onCorazonClick(pelicula: PeliculaModel) {
                 // Eliminar la película de la base de datos
                 movieRepository.deleteMovie(UserInfo.id, pelicula.id.toInt())
@@ -48,7 +51,7 @@ class PeliculasFavoritasActivity : MenuActivity() {
                 } else {
                     noResultsTextView.visibility = View.GONE
                 }
-                Toast.makeText(this@PeliculasFavoritasActivity, "Película eliminada de favoritos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Película eliminada de favoritos", Toast.LENGTH_SHORT).show()
             }
         })
 
@@ -56,7 +59,7 @@ class PeliculasFavoritasActivity : MenuActivity() {
         recyclerView.adapter = adapterPeliculasFavoritas
 
         // Obtener la referencia del TextView de noResults desde el layout
-        noResultsTextView = findViewById(R.id.noResultsFavorites)
+        noResultsTextView = view.findViewById(R.id.noResultsFavorites)
 
         // Mostrar el mensaje si no hay películas
         if (peliculasFavoritas.isEmpty()) {
@@ -65,5 +68,6 @@ class PeliculasFavoritasActivity : MenuActivity() {
             noResultsTextView.visibility = View.GONE
         }
 
+        return view
     }
 }

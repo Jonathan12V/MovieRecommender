@@ -76,7 +76,7 @@
             android:id="@+id/rbNocheOscura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Noche Oscura" />
+            android:text="Noche Oscura"/>
     </RadioGroup>
 
 </LinearLayout>

@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="160dp"
     android:background="#162534"
+    android:backgroundTint="#162534"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackgroundBorderless"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:padding="16dp">
     
     <ImageView
         android:id="@+id/nav_header_imageView"
@@ -23,7 +23,6 @@
         android:id="@+id/nav_header_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#fff"
         android:paddingTop="16dp"
         android:text="Pablo51"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />

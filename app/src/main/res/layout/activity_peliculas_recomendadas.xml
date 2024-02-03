@@ -5,10 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <EditText
         android:id="@+id/searchEditText"
-        android:layout_width="176dp"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="110dp"
         android:background="@android:drawable/editbox_background_normal"
@@ -29,8 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchEditText">
-
+        app:layout_constraintTop_toBottomOf="@+id/searchEditText">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,38 +45,41 @@
                 android:id="@+id/Todo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
+                android:cursorVisible="false"
                 android:minHeight="48dp"
                 android:text="@string/selector_todo"
                 android:textSize="15sp"
-                android:layout_marginStart="15dp"
-                app:layout_constraintStart_toStartOf="@+id/searchEditText"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/searchEditText" />
 
             <RadioButton
                 android:id="@+id/recomendados"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
                 android:checked="true"
                 android:minHeight="48dp"
                 android:text="@string/selector_recomendados"
                 android:textSize="15sp"
-                android:layout_marginStart="15dp"
-                app:layout_constraintStart_toStartOf="@+id/Todo"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/Todo" />
 
-            <!-- Agrega esto en tu layout XML -->
             <ProgressBar
                 android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:visibility="gone"
-                style="?android:attr/progressBarStyleLarge" />
+                android:layout_marginTop="8dp"/>
+
+
+
             <TextView
                 android:id="@+id/accion"
-                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -94,7 +101,6 @@
 
             <TextView
                 android:id="@+id/terror"
-                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -118,7 +124,6 @@
 
             <TextView
                 android:id="@+id/comedia"
-                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -143,7 +148,6 @@
 
             <TextView
                 android:id="@+id/romance"
-                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -166,7 +170,6 @@
 
             <TextView
                 android:id="@+id/animacion"
-                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -189,7 +192,6 @@
 
             <TextView
                 android:id="@+id/musica"
-                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -212,7 +214,6 @@
 
             <TextView
                 android:id="@+id/cienciaFiccion"
-                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -235,7 +236,6 @@
 
             <TextView
                 android:id="@+id/misterio"
-                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -258,7 +258,6 @@
 
             <TextView
                 android:id="@+id/fantasia"
-                style="@style/BoldTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

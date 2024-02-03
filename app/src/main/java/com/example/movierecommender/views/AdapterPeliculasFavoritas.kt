@@ -53,7 +53,7 @@ class AdapterPeliculasFavoritas(
         }
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, DetallesPeliculaActivity::class.java)
+            val intent = Intent(context, DetallesPeliculaFragment::class.java)
             intent.putExtra("id", pelicula.id.toInt())
             context.startActivity(intent)
         }
