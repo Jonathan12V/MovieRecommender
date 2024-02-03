@@ -14,6 +14,7 @@ import com.example.movierecommender.views.PeliculasRecomendadasActivity
 import com.example.movierecommender.views.PeliculasRecomendadasFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 
 abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -23,14 +24,20 @@ abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     private var modoOscuroModalAbierto = false
     private var selectedItem: MenuItem? = null
     private var selectedBottomNavItem: Int = 0
+    private lateinit var fab: FloatingActionButton
 
     override fun onCreate( savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_header)
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigationView = findViewById(R.id.bottomNavigationView)
 
         drawerLayout = findViewById(R.id.drawer_layout)
+
+        fab = findViewById(R.id.fab)
+        fab.setOnClickListener {
+            showModoOscuroBottomSheet()
+        }
 
         val navigationView: NavigationView = findViewById(R.id.navigation_view)
 
@@ -52,17 +59,6 @@ abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                 R.id.bottom_accion_favoritos -> {
                     val fragment = PeliculasFavoritasFragment()
                     replaceFragment(fragment)
-                    true
-                }
-                R.id.bottom_accion_cambiar_tema -> {
-                    if (!modoOscuroModalAbierto) {
-                        // Guardar el ítem seleccionado antes de cambiar el tema
-                        selectedItem = bottomNavigationView.selectedItemId.let { bottomNavigationView.menu.findItem(it) }
-                        // Desmarcar el ítem después de abrir el modal
-                        menuItem.isChecked = false
-                        Toast.makeText(this, "Configuración de Modo Oscuro", Toast.LENGTH_SHORT).show()
-                        this@MenuActivity.showModoOscuroBottomSheet()
-                    }
                     true
                 }
                 else -> false
