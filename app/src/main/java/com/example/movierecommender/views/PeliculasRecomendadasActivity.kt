@@ -22,12 +22,14 @@ import com.example.movierecommender.R
 import com.example.movierecommender.databinding.ActivityPeliculasRecomendadasBinding
 import com.example.movierecommender.models.PeliculaModel
 import com.example.movierecommender.repository.MovieRepository
+import com.example.movierecommender.viewmodels.PeliculasRecomendadasModel
 import com.example.movierecommender.viewmodels.PeliculasViewModel
 
 class PeliculasRecomendadasActivity : MenuActivity(), AdapterPeliculas.OnCorazonClickListener {
 
     private lateinit var binding: ActivityPeliculasRecomendadasBinding
     private lateinit var viewModel: PeliculasViewModel
+    private lateinit var viewModelRecomendadas: PeliculasRecomendadasModel
     private val adaptersMap: MutableMap<Int, AdapterPeliculas> = mutableMapOf()
 
     // Agrega una propiedad para el ProgressBar
@@ -36,6 +38,9 @@ class PeliculasRecomendadasActivity : MenuActivity(), AdapterPeliculas.OnCorazon
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel = ViewModelProvider(this)[PeliculasViewModel::class.java]
+        viewModelRecomendadas = ViewModelProvider(this)[PeliculasRecomendadasModel::class.java]
 
         binding = ActivityPeliculasRecomendadasBinding.inflate(layoutInflater)
         val contenidoPeliculas = binding.root
@@ -54,6 +59,10 @@ class PeliculasRecomendadasActivity : MenuActivity(), AdapterPeliculas.OnCorazon
         val buttonTodo: RadioButton = findViewById(R.id.Todo)
         val buttonRecomendadas: RadioButton = findViewById(R.id.recomendados)
 
+        progressBar.visibility = View.VISIBLE
+
+        obtenerPeliculasTodasRecomendadas(true)
+
         buttonTodo.setOnClickListener {
             buttonTodo.isChecked = true
             buttonRecomendadas.isChecked = false
@@ -65,6 +74,7 @@ class PeliculasRecomendadasActivity : MenuActivity(), AdapterPeliculas.OnCorazon
         buttonRecomendadas.setOnClickListener {
             buttonRecomendadas.isChecked = true
             buttonTodo.isChecked = false
+            progressBar.visibility = View.VISIBLE
 
             obtenerPeliculasTodasRecomendadas(false)
         }
@@ -84,21 +94,25 @@ class PeliculasRecomendadasActivity : MenuActivity(), AdapterPeliculas.OnCorazon
             val query = editable.toString().trim()
 
             adaptersMap.forEach { (genreId, adapter) ->
-                val recyclerView = findViewById<RecyclerView>(obtenerIdRecyclerViewPorGenero(genreId))
-                recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+                val recyclerView =
+                    findViewById<RecyclerView>(obtenerIdRecyclerViewPorGenero(genreId))
+                recyclerView.layoutManager =
+                    LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
                 val peliculasFiltradas = viewModel.peliculasPorGenero.value?.get(genreId)
                     ?.filter { pelicula ->
                         pelicula.nombrePelicula.startsWith(query, true)
                     } ?: emptyList()
 
-                recyclerView.visibility = if (peliculasFiltradas.isNotEmpty()) View.VISIBLE else View.GONE
+                recyclerView.visibility =
+                    if (peliculasFiltradas.isNotEmpty()) View.VISIBLE else View.GONE
 
                 adapter.actualizarLista(peliculasFiltradas)
                 recyclerView.adapter = adapter
 
                 val textViewGenero = obtenerTextViewPorGenero(genreId)
-                textViewGenero.visibility = if (peliculasFiltradas.isNotEmpty()) View.VISIBLE else View.GONE
+                textViewGenero.visibility =
+                    if (peliculasFiltradas.isNotEmpty()) View.VISIBLE else View.GONE
             }
         }
 
@@ -115,10 +129,18 @@ class PeliculasRecomendadasActivity : MenuActivity(), AdapterPeliculas.OnCorazon
         viewModel.peliculasPorGenero.observe(this) { peliculasPorGenero ->
             peliculasPorGenero.forEach { (genreId, peliculas) ->
                 val recyclerViewId = obtenerIdRecyclerViewPorGenero(genreId)
-                val adapter = adaptersMap.getOrPut(genreId) { AdapterPeliculas(this, emptyList(), this, movieRepository) }
+                val adapter = adaptersMap.getOrPut(genreId) {
+                    AdapterPeliculas(
+                        this,
+                        emptyList(),
+                        this,
+                        movieRepository
+                    )
+                }
 
                 val recyclerView = findViewById<RecyclerView>(recyclerViewId)
-                recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+                recyclerView.layoutManager =
+                    LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
                 recyclerView.adapter = adapter
 
                 adapter.listaPeliculas = peliculas
@@ -139,23 +161,78 @@ class PeliculasRecomendadasActivity : MenuActivity(), AdapterPeliculas.OnCorazon
     }
 
     private fun obtenerPeliculasRecomendadasRecyclerView() {
-        binding.searchEditText.text = null // Borra el texto del EditText de búsqueda
+        binding.searchEditText.addTextChangedListener { editable ->
+            val query = editable.toString().trim()
+
+            adaptersMap.forEach { (genreId, adapter) ->
+                val recyclerView =
+                    findViewById<RecyclerView>(obtenerIdRecyclerViewPorGenero(genreId))
+                recyclerView.layoutManager =
+                    LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+                val peliculasFiltradas =
+                    viewModelRecomendadas.peliculasRecomendadas.value?.get(genreId)
+                        ?.filter { pelicula ->
+                            pelicula.nombrePelicula.startsWith(query, true)
+                        } ?: emptyList()
+
+                recyclerView.visibility =
+                    if (peliculasFiltradas.isNotEmpty()) View.VISIBLE else View.GONE
+
+                adapter.actualizarLista(peliculasFiltradas)
+                recyclerView.adapter = adapter
+
+                val textViewGenero = obtenerTextViewPorGenero(genreId)
+                textViewGenero.visibility =
+                    if (peliculasFiltradas.isNotEmpty()) View.VISIBLE else View.GONE
+
+            }
+        }
 
         adaptersMap.forEach { (genreId, adapter) ->
             val recyclerView = findViewById<RecyclerView>(obtenerIdRecyclerViewPorGenero(genreId))
+            recyclerView.visibility = View.VISIBLE
 
-            recyclerView.visibility = View.GONE
-
-            adapter.actualizarLista(emptyList())
-        }
-
-        adaptersMap.keys.forEach { genreId ->
             val textViewGenero = obtenerTextViewPorGenero(genreId)
-            textViewGenero.visibility = View.GONE
+            textViewGenero.visibility = View.VISIBLE
+
+            recyclerView.adapter = adapter  // Configurar el adaptador sin filtrar por género
         }
 
-        Toast.makeText(this, "Mostrando todas las películas recomendadas", Toast.LENGTH_SHORT).show()
+        viewModelRecomendadas.peliculasRecomendadas.observe(this) { peliculasPorGenero ->
+            peliculasPorGenero.forEach { (genreId, peliculas) ->
+                val recyclerViewId = obtenerIdRecyclerViewPorGenero(genreId)
+                val adapter = adaptersMap.getOrPut(genreId) {
+                    AdapterPeliculas(
+                        this,
+                        emptyList(),
+                        this,
+                        movieRepository
+                    )
+                }
+
+                val recyclerView = findViewById<RecyclerView>(recyclerViewId)
+                recyclerView.layoutManager =
+                    LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+                recyclerView.adapter = adapter
+
+                // Actualizar la lista de películas en el adaptador
+                adapter.listaPeliculas = peliculas
+                adapter.notifyDataSetChanged()
+            }
+
+            progressBar.visibility = View.GONE
+        }
+
+        if (adaptersMap.isEmpty()) {
+            viewModelRecomendadas.obtenerRecomendadas()
+        }
+
+        Toast.makeText(this, "Mostrando todas las películas recomendadas", Toast.LENGTH_SHORT)
+            .show()
     }
+
 
     private fun obtenerIdRecyclerViewPorGenero(genreId: Int): Int {
         return when (genreId) {
@@ -201,13 +278,21 @@ class PeliculasRecomendadasActivity : MenuActivity(), AdapterPeliculas.OnCorazon
             Toast.makeText(this, "Película eliminada de favoritos", Toast.LENGTH_SHORT).show()
         } else {
             // Película no existe en la base de datos, añadirla
-            val result = movieRepository.addMovie(pelicula.id, pelicula.nombrePelicula, pelicula.poster, UserInfo.id)
+            val result = movieRepository.addMovie(
+                pelicula.id,
+                pelicula.nombrePelicula,
+                pelicula.poster,
+                UserInfo.id
+            )
 
             if (result != -1L) {
-                Toast.makeText(this, "Película añadida a la base de datos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Película añadida a la base de datos", Toast.LENGTH_SHORT)
+                    .show()
             } else {
                 Toast.makeText(this, "Error al añadir la película", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
+
 }
