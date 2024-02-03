@@ -30,27 +30,30 @@
         app:layout_constraintStart_toStartOf="@+id/etPassword"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
-    <EditText
-        android:id="@+id/etUser"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/divUser"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="64dp"
         android:layout_marginEnd="64dp"
-        android:background="@drawable/custom_input"
-        android:drawableStart="@mipmap/perfil64px"
-        android:drawablePadding="12dp"
-        android:drawableTint="@color/white"
-        android:ems="10"
         android:hint="@string/usuarioHint"
-        android:inputType="text"
-        android:padding="5dp"
-        android:textColor="#FFFFFF"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagenLogo"
-        tools:text="@string/usuarioHint" />
+        android:textColor="#FFFFFF"
+        app:hintTextColor="#66FFFFFF"
+        app:cursorColor="@color/white">
+
+        <EditText
+            app:hintTextColor="#66FFFFFF"
+            android:id="@+id/etUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_input"
+            android:textColor="#FFFFFF" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <EditText
         android:id="@+id/etEmail"
@@ -72,7 +75,7 @@
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUser"
+        app:layout_constraintTop_toBottomOf="@+id/divUser"
         tools:text="@string/email" />
 
     <EditText

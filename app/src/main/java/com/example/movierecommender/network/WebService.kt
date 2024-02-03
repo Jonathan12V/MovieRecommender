@@ -24,4 +24,14 @@ interface WebService {
         @Query("api_key") apiKey: String,
         @Query("language") language: String = "es-ES"
     ): Call<DetallesPeliculasModel>
+
+    @GET("discover/movie")
+    suspend fun obtenerRecomendados(
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int,
+        @Query("language") language: String = "es-ES",
+        @Query("sort_by") sortBy: String = "revenue.desc"
+    ): Response<PeliculasResponse>
+
+
 }
