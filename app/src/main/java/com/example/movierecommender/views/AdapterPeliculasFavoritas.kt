@@ -3,11 +3,13 @@ package com.example.movierecommender.views
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -53,12 +55,18 @@ class AdapterPeliculasFavoritas(
         }
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, DetallesPeliculaFragment::class.java)
-            intent.putExtra("id", pelicula.id.toInt())
-            context.startActivity(intent)
+            val fragment = DetallesPeliculaFragment()
+            val bundle = Bundle()
+            bundle.putInt("id", pelicula.id.toInt())
+            fragment.arguments = bundle
+
+            // Reemplaza el fragmento actual en tu actividad por el DetallesPeliculaFragment
+            val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, fragment)
+            transaction.addToBackStack(null)  // Opcional: añade el fragmento al back stack
+            transaction.commit()
         }
     }
-
     override fun getItemCount(): Int {
         return listaPeliculas.size
     }

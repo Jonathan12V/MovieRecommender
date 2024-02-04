@@ -1,10 +1,12 @@
 package com.example.movierecommender
 
+import UserInfo
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.RadioGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -40,6 +42,9 @@ abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         }
 
         val navigationView: NavigationView = findViewById(R.id.navigation_view)
+        val headerView = navigationView.getHeaderView(0)
+        val navHeaderTextView : TextView = headerView.findViewById(R.id.nav_header_textView)
+        navHeaderTextView.text = UserInfo.username
 
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
 

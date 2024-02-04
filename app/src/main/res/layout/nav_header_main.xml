@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
         android:text="Pablo51"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>
