@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group>
+        <item
+            android:id="@+id/bottom_accion_regreso_inicio"
+            android:title="@string/menu_inicio"
+            android:icon="@mipmap/regreso_casa_negro"/>
+        <item
+            android:id="@+id/bottom_accion_perfil"
+            android:title="@string/menu_perfil"
+            android:icon="@mipmap/user"/>
+        <item
+            android:id="@+id/bottom_accion_favoritos"
+            android:title="@string/menu_favoritos"
+            android:icon="@mipmap/favorito"/>
+        <item
+            android:id="@+id/bottom_accion_cambiar_tema"
+            android:title=""
+            android:enabled="false"/>
+    </group>
+</menu>

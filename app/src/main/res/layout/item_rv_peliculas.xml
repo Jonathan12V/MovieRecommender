@@ -50,7 +50,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:gravity="center"
-        android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@+id/iv_star"
         app:layout_constraintTop_toTopOf="@+id/iv_star"
         tools:text="@string/rating" />
@@ -85,7 +84,6 @@
         android:ellipsize="end"
         android:gravity="start"
         android:maxLines="1"
-        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="@+id/cv_question_image"
         app:layout_constraintStart_toStartOf="@+id/iv_star"
         app:layout_constraintTop_toBottomOf="@+id/tv_movie_rating"

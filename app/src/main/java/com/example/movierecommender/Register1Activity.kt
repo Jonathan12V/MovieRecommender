@@ -46,19 +46,21 @@ class Register1Activity : AppCompatActivity() {
 
                 when (check) {
                     1 -> {
-                        showToast("Ese nombre de usuario ya está en uso.")
                         etUser.setError("Ese nombre de usuario ya está en uso.")
                     }
 
-                    2 -> showToast("Ese e-mail ya está en uso.")
-                    3 -> showToast("Ese nombre de usuario y e-mail ya están en uso.")
+                    2 -> etEmail.setError("Ese e-mail ya está en uso")
+                    3 -> {
+                        etUser.setError("Ese nombre de usuario ya esta en uso")
+                        etPassword.setError("El e-mail ya esta en uso")
+                    }
                     -1 -> {
                         if (!checkPassword) {
-                            showToast("La contraseña no cumple los requisitos.")
+                            etPassword.setError("La contraseña no cumple los requisitos.")
                         }
 
                         if (!checkEmailEstructura) {
-                            showToast("El email no tiene una estructura correcta.")
+                            etEmail.setError("El email no tiene una estructura correcta")
                         }
                         if (checkPassword && checkEmailEstructura) {
                             val intent = Intent(this, Register2Activity::class.java).apply {
@@ -83,13 +85,13 @@ class Register1Activity : AppCompatActivity() {
         val apellido: String = etEmail.getText().toString()
         val password: String = etPassword.getText().toString()
         if (nombre == "") {
-            etUser.setError("Required")
+            etUser.setError("Campo requerido")
         }
         if (apellido == "") {
-            etEmail.setError("Required")
+            etEmail.setError("Campo requerido")
         }
         if (password == "") {
-            etPassword.setError("Required")
+            etPassword.setError("Campo requerido")
         }
     }
 

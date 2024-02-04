@@ -9,8 +9,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.movierecommender.repository.UserRepository
 import com.example.movierecommender.views.PeliculasRecomendadasActivity
+import com.example.movierecommender.views.PeliculasRecomendadasFragment
 
 class LoginActivity : AppCompatActivity() {
 

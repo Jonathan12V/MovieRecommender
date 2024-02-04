@@ -5,77 +5,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginRight="20dp"
-    android:layout_marginBottom="15dp"
-    android:orientation="vertical">
+    android:layout_margin="8dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_question_image_favorite"
         android:layout_width="180dp"
-        android:layout_height="250dp"
-        android:baselineAligned="false"
-        android:elevation="12dp"
-        app:cardCornerRadius="20dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="#CC000000">
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv_movie_favorite"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:contentDescription="@string/app_name"
+                android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/poster_placeholder"
-                tools:ignore="ImageContrastCheck" />
+                tools:ignore="ContentDescription" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="start">
+                android:gravity="start"
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/tv_movie_name_favorite"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center"
                     android:maxLines="2"
-                    android:padding="12dp"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"
-                    tools:text="@string/nombre_pelicula" />
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="Movie Name" />
 
                 <ImageView
                     android:id="@+id/iv_like_favorite"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="10dp"
-                    android:contentDescription="@string/contentDescripcion_like"
-                    android:tint="@color/white"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Like"
                     app:srcCompat="@mipmap/like"
-                    tools:visibility="visible"
-                    tools:ignore="UseAppTint" />
+                    tools:visibility="visible" />
 
                 <ImageView
                     android:id="@+id/iv_corazon_favorite"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="15dp"
-                    android:contentDescription="@string/contentDescripcion_corazon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="Corazon"
                     app:srcCompat="@mipmap/corazon_rojo"
-                    tools:ignore="ImageContrastCheck"
                     tools:visibility="visible" />
             </LinearLayout>
 

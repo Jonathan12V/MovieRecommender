@@ -47,7 +47,7 @@ class PeliculasViewModel : ViewModel() {
     private suspend fun obtenerPagina(page: Int): Boolean {
         val responsePage = RetrofitClient.webService.obtenerCartelera(Constantes.API_KEY, page)
         val movies = responsePage.body()?.resultados
-
+ 
         if (!movies.isNullOrEmpty()) {
             // Agregar películas por género
             withContext(Dispatchers.Main) {
@@ -72,23 +72,18 @@ class PeliculasViewModel : ViewModel() {
             val peliculasDeRomance = it.filter { pelicula -> pelicula.genreIds.contains(10749) }
             val peliculasDeAnimacion = it.filter { pelicula -> pelicula.genreIds.contains(16) }
             val peliculasDeMusica = it.filter { pelicula -> pelicula.genreIds.contains(10402) }
-            val peliculasDeCienciaFiccion =
-                it.filter { pelicula -> pelicula.genreIds.contains(878) }
+            val peliculasDeCienciaFiccion = it.filter { pelicula -> pelicula.genreIds.contains(878) }
             val peliculasDeMisterio = it.filter { pelicula -> pelicula.genreIds.contains(9648) }
             val peliculasDeFantasia = it.filter { pelicula -> pelicula.genreIds.contains(14) }
 
             peliculasAgrupadas[28] = (peliculasAgrupadas[28] ?: emptyList()) + peliculasDeAccion
             peliculasAgrupadas[27] = (peliculasAgrupadas[27] ?: emptyList()) + peliculasDeTerror
             peliculasAgrupadas[35] = (peliculasAgrupadas[35] ?: emptyList()) + peliculasDeComedia
-            peliculasAgrupadas[10749] =
-                (peliculasAgrupadas[10749] ?: emptyList()) + peliculasDeRomance
+            peliculasAgrupadas[10749] = (peliculasAgrupadas[10749] ?: emptyList()) + peliculasDeRomance
             peliculasAgrupadas[16] = (peliculasAgrupadas[16] ?: emptyList()) + peliculasDeAnimacion
-            peliculasAgrupadas[10402] =
-                (peliculasAgrupadas[10402] ?: emptyList()) + peliculasDeMusica
-            peliculasAgrupadas[878] =
-                (peliculasAgrupadas[878] ?: emptyList()) + peliculasDeCienciaFiccion
-            peliculasAgrupadas[9648] =
-                (peliculasAgrupadas[9648] ?: emptyList()) + peliculasDeMisterio
+            peliculasAgrupadas[10402] = (peliculasAgrupadas[10402] ?: emptyList()) + peliculasDeMusica
+            peliculasAgrupadas[878] = (peliculasAgrupadas[878] ?: emptyList()) + peliculasDeCienciaFiccion
+            peliculasAgrupadas[9648] = (peliculasAgrupadas[9648] ?: emptyList()) + peliculasDeMisterio
             peliculasAgrupadas[14] = (peliculasAgrupadas[14] ?: emptyList()) + peliculasDeFantasia
         }
     }

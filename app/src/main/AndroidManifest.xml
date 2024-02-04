@@ -8,19 +8,18 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icono"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icono"
         android:supportsRtl="true"
-        android:theme="@style/Tema_claro"
+        android:theme="@style/Theme.MovieRecommender"
         android:usesCleartextTraffic="true"
-
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Tema_claro">
+            android:theme="@style/Theme.MovieRecommender">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,14 +27,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".VisualizacionPerfilActivity" />
-        <activity android:name=".PeliculasFavoritasActivity" />
+
         <activity android:name=".views.PeliculasRecomendadasActivity" />
-        <activity android:name=".PeliculasTodasActivity" />
         <activity android:name=".Register1Activity" />
         <activity android:name=".Register2Activity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".EditPerfilActivity" />
         <activity
             android:name=".views.DetallesPeliculaActivity"
             android:exported="true" />
