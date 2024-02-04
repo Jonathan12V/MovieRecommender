@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/icono"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieRecommender"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
@@ -26,14 +27,11 @@
             </intent-filter>
         </activity>
 
-        
-        <activity android:name=".VisualizacionPerfilActivity"/>
-        <activity android:name=".PeliculasFavoritasActivity" />
+
         <activity android:name=".views.PeliculasRecomendadasActivity" />
         <activity android:name=".Register1Activity" />
         <activity android:name=".Register2Activity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".EditPerfilActivity" />
         <activity
             android:name=".views.DetallesPeliculaActivity"
             android:exported="true" />

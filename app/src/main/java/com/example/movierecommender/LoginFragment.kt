@@ -36,26 +36,25 @@ class LoginFragment : Fragment() {
         userRepository = UserRepository(requireContext())
 
         buttonIniciarSesion.setOnClickListener {
-            val check = userRepository.checkUser(etUser.text.toString(), etPassword.text.toString())
-
-            if (check == 1) {
-                UserInfo.username = etUser.text.toString()
-                UserInfo.id = userRepository.getIdUser(etUser.text.toString())
-
-                val intent = Intent(requireContext(), PeliculasRecomendadasActivity::class.java)
-                startActivity(intent)
-            } else if (check == 2) {
-                Toast.makeText(
-                    requireContext(),
-                    "No existe ese usuario",
-                    Toast.LENGTH_LONG
-                ).show()
+            // Validación de campos
+            if (etUser.text.isEmpty() || etPassword.text.isEmpty()) {
+                validacion()
             } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Contraseña incorrecta",
-                    Toast.LENGTH_LONG
-                ).show()
+                // Verificación de las credenciales del usuario
+                val check = userRepository.checkUser(etUser.text.toString(), etPassword.text.toString())
+
+                when (check) {
+                    1 -> {
+                        // Usuario y contraseña correctos
+                        UserInfo.username = etUser.text.toString()
+                        UserInfo.id = userRepository.getIdUser(etUser.text.toString())
+
+                        val intent = Intent(requireContext(), PeliculasRecomendadasActivity::class.java)
+                        startActivity(intent)
+                    }
+                    2 -> etUser.setError("No existe ese usuario")
+                    else -> etPassword.setError("Contraseña incorrecta")
+                }
             }
         }
 
@@ -65,5 +64,16 @@ class LoginFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun validacion() {
+        val nombre: String = etUser.getText().toString()
+        val password: String = etPassword.getText().toString()
+        if (nombre == "") {
+            etUser.setError("Campo requerido")
+        }
+        if (password == "") {
+            etPassword.setError("Campo requerido")
+        }
     }
 }

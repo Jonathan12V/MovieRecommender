@@ -2,42 +2,41 @@ package com.example.movierecommender.views
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.movierecommender.core.Constantes.BASE_URL_IMAGEN
 import coil.load
 import coil.size.Scale
+import com.example.movierecommender.MenuActivity
 import com.example.movierecommender.databinding.ActivityPeliculasInformacionBinding
 import com.example.movierecommender.models.DetallesPeliculasModel
 import com.example.movierecommender.network.RetrofitClient
 import com.example.movierecommender.R
 import com.example.movierecommender.core.Constantes
-import com.example.movierecommender.core.Constantes.BASE_URL_BACKDROP
+import com.example.movierecommender.databinding.ActivityPeliculasRecomendadasBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetallesPeliculaFragment : Fragment() {
+class DetallesPeliculaActivity : MenuActivity() {
 
     private lateinit var binding: ActivityPeliculasInformacionBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = ActivityPeliculasInformacionBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("DetallesPeliculaActivity", "DetallesPeliculaActivity iniciada con éxito")
+        super.onCreate(savedInstanceState)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        binding = ActivityPeliculasInformacionBinding.inflate(layoutInflater)
+        val contenidoMostrarPelicula = binding.root
 
-        // Obtener el ID de la película de los argumentos del fragmento
-        val movieId = arguments?.getInt("id", 1) ?: 1
+        // Obtiene el contenedor principal del MenuActivity
+        val contenedorMenu = findViewById<ConstraintLayout>(R.id.fragment_container)
 
+        // Agrega el contenido de PeliculasRecomendadasActivity al contenedor
+        contenedorMenu.addView(contenidoMostrarPelicula)
+
+        // Obtener el ID de la película de los extras del intent
+        val movieId = intent.getIntExtra("id", 1)
         // Llamada a la API utilizando Retrofit
         try {
             val call: Call<DetallesPeliculasModel> =
@@ -55,7 +54,7 @@ class DetallesPeliculaFragment : Fragment() {
                             // Mostrar información en la interfaz de usuario
                             mostrarDetallesPelicula(pelicula)
                         } else {
-                            Log.e("DetallesPeliculaFragment", "La respuesta del cuerpo es nula")
+                            Log.e("DetallesPeliculaActivity", "La respuesta del cuerpo es nula")
                         }
                     } else {
                         // Manejar el caso en que la respuesta no sea exitosa
@@ -66,13 +65,13 @@ class DetallesPeliculaFragment : Fragment() {
 
                 override fun onFailure(call: Call<DetallesPeliculasModel>, t: Throwable) {
                     // Manejar el caso de fallo en la llamada
-                    Log.e("DetallesPeliculaFragment", "Error en la llamada a la API", t)
+                    Log.e("DetallesPeliculaActivity", "Error en la llamada a la API", t)
                 }
             })
 
         } catch (e: Exception) {
             // Manejar el caso de error en la llamada
-            Log.e("DetallesPeliculaFragment", "Error en la llamada a la API", e)
+            Log.e("DetallesPeliculaActivity", "Error en la llamada a la API", e)
         }
     }
 
@@ -85,15 +84,6 @@ class DetallesPeliculaFragment : Fragment() {
             scale(Scale.FILL)
         }
 
-        // Obtener la URL completa de la imagen grande (backdrop)
-        val imageBackdrop = BASE_URL_BACKDROP + pelicula.backdropPath
-        binding.ivImageLong.load(imageBackdrop) {
-            crossfade(true)
-            placeholder(R.mipmap.poster_placeholder) // Puedes usar el mismo placeholder o cambiarlo
-            scale(Scale.FILL)
-        }
-
-
         binding.tvNombrePelicula.text = pelicula.title
         binding.tvPeliculaAO.text = pelicula.releaseDate
         binding.tvPeliculaRating.text = pelicula.voteAverage.toString()
@@ -101,5 +91,7 @@ class DetallesPeliculaFragment : Fragment() {
         // Mostrar los nombres de los géneros
         val genres = pelicula.genres.map { it.name }
         binding.tvPeliculaGenero.text = genres.joinToString(", ")
+
     }
 }
+

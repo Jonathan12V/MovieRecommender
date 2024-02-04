@@ -1,6 +1,8 @@
 // PeliculasRecomendadasFragment.kt
 package com.example.movierecommender.views
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +21,7 @@ import com.example.movierecommender.databinding.ActivityPeliculasRecomendadasBin
 import com.example.movierecommender.models.PeliculaModel
 import com.example.movierecommender.repository.MovieRepository
 import com.example.movierecommender.viewmodels.PeliculasViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class PeliculasRecomendadasFragment : Fragment(), AdapterPeliculas.OnCorazonClickListener {
 
@@ -27,6 +30,10 @@ class PeliculasRecomendadasFragment : Fragment(), AdapterPeliculas.OnCorazonClic
     private val adaptersMap: MutableMap<Int, AdapterPeliculas> = mutableMapOf()
     private lateinit var progressBar: ProgressBar
     private lateinit var movieRepository: MovieRepository
+    // Shared Preferences para guardar el estado de los RadioButton
+    private lateinit var sharedPreferences: SharedPreferences
+    private val PREF_NAME = "PeliculasRecomendadasFragmentPrefs"
+    private val KEY_SELECTED_RADIOBUTTON = "SelectedRadioButton"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +48,20 @@ class PeliculasRecomendadasFragment : Fragment(), AdapterPeliculas.OnCorazonClic
         val buttonRecomendadas: RadioButton = view.findViewById(R.id.recomendados)
 
         movieRepository = MovieRepository(requireContext())
+        sharedPreferences = requireContext().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+
+        // Restaurar el estado del RadioButton guardado
+        val selectedRadioButton = sharedPreferences.getInt(KEY_SELECTED_RADIOBUTTON, R.id.recomendados)
+        if (selectedRadioButton == R.id.recomendados) {
+            binding.Todo.isChecked = false
+            binding.recomendados.isChecked = true
+            obtenerPeliculasTodasRecomendadas(false) // Seleccionar recomendados por defecto
+        } else {
+            binding.Todo.isChecked = true
+            binding.recomendados.isChecked = false
+            progressBar.visibility = View.VISIBLE
+            obtenerPeliculasTodasRecomendadas(true)
+        }
 
         buttonTodo.setOnClickListener {
             buttonTodo.isChecked = true
@@ -99,7 +120,7 @@ class PeliculasRecomendadasFragment : Fragment(), AdapterPeliculas.OnCorazonClic
             textViewGenero.visibility = View.VISIBLE
         }
 
-        viewModel = ViewModelProvider(this)[PeliculasViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity()).get(PeliculasViewModel::class.java)
 
         viewModel.peliculasPorGenero.observe(requireActivity()) { peliculasPorGenero ->
             peliculasPorGenero.forEach { (genreId, peliculas) ->
@@ -185,16 +206,31 @@ class PeliculasRecomendadasFragment : Fragment(), AdapterPeliculas.OnCorazonClic
         if (movieRepository.movieExists(UserInfo.id, pelicula.id.toInt())) {
             // Película ya existe en la base de datos, eliminarla
             movieRepository.deleteMovie(UserInfo.id, pelicula.id.toInt())
-            Toast.makeText(requireContext(), "Película eliminada de favoritos", Toast.LENGTH_SHORT).show()
+            Snackbar.make(requireView(), "Película eliminada de favoritos", Snackbar.LENGTH_SHORT).show()
         } else {
             // Película no existe en la base de datos, añadirla
             val result = movieRepository.addMovie(pelicula.id, pelicula.nombrePelicula, pelicula.poster, UserInfo.id)
 
             if (result != -1L) {
-                Toast.makeText(requireContext(), "Película añadida a la base de datos", Toast.LENGTH_SHORT).show()
+                Snackbar.make(requireView(), "Película añadida a la base de datos", Snackbar.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Error al añadir la película", Toast.LENGTH_SHORT).show()
+                Snackbar.make(requireView(), "Error al añadir la película", Snackbar.LENGTH_SHORT).show()
             }
         }
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Guardar el estado del RadioButton seleccionado en SharedPreferences
+        val selectedRadioButton = if (binding.Todo.isChecked) R.id.Todo else R.id.recomendados
+        sharedPreferences.edit().putInt(KEY_SELECTED_RADIOBUTTON, selectedRadioButton).apply()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // Guardar el estado del RadioButton seleccionado en SharedPreferences
+        val selectedRadioButton = if (binding.Todo.isChecked) R.id.Todo else R.id.recomendados
+        sharedPreferences.edit().putInt(KEY_SELECTED_RADIOBUTTON, selectedRadioButton).apply()
+    }
+
+
 }

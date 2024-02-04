@@ -123,13 +123,37 @@ class UserRepository(context: Context) :
 
 
     //Metodos para ver que el usuario o el email no este ya en la base de datos
-    fun checkUser(user: String): Boolean {
+    fun checkUserAndEmailUsado(user: String, email: String): Int {
+        val db = this.readableDatabase
 
-        return false;
+        val userQuery = "SELECT * FROM user WHERE user = ?"
+        val userEmailQuery = "SELECT * FROM user WHERE email = ?"
+
+        val userCursor = db.rawQuery(userQuery, arrayOf(user))
+        val userEmailCursor = db.rawQuery(userEmailQuery, arrayOf(email))
+
+        val userExists = userCursor.count > 0
+        val userEmailExists = userEmailCursor.count > 0
+
+        userCursor.close()
+        userEmailCursor.close()
+
+        return when {
+            userExists && userEmailExists -> 3 // Ambos están usados
+            userExists -> 1 // Usuario está usado
+            userEmailExists -> 2 // Email está usado
+            else -> -1 // Ninguno está usado
+        }
     }
 
-    fun checkEmail(user: String): Boolean {
+    fun checkPasswordSecurity(password: String): Boolean {
+        val regex = Regex("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{6,}$")
+        return regex.matches(password)
+    }
 
-        return false;
+    fun checkEmailEstructura(email: String): Boolean {
+        val regex = Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$")
+        return regex.matches(email)
     }
 }
+

@@ -77,8 +77,10 @@ abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         val homePeliculas: ImageView = findViewById(R.id.logo)
         homePeliculas.setOnClickListener {
-            val intent = Intent(this, PeliculasRecomendadasActivity::class.java)
-            startActivity(intent)
+            // Reemplazar el contenido del contenedor principal con LoginFragment
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, PeliculasRecomendadasFragment())
+                .commit()
             Toast.makeText(this, "Inicio - peliculas recomendadas", Toast.LENGTH_SHORT).show()
         }
 

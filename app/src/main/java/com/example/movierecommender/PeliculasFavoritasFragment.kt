@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movierecommender.models.PeliculaModel
 import com.example.movierecommender.repository.MovieRepository
 import com.example.movierecommender.views.AdapterPeliculasFavoritas
+import com.google.android.material.snackbar.Snackbar
 
 class PeliculasFavoritasFragment : Fragment() {
 
@@ -51,7 +52,7 @@ class PeliculasFavoritasFragment : Fragment() {
                 } else {
                     noResultsTextView.visibility = View.GONE
                 }
-                Toast.makeText(requireContext(), "Película eliminada de favoritos", Toast.LENGTH_SHORT).show()
+                Snackbar.make(requireView(), "Película eliminada de favoritos", Snackbar.LENGTH_SHORT).show()
             }
         })
 
