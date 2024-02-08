@@ -1,5 +1,6 @@
 package com.example.movierecommender
 
+import AESEncryption
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -18,6 +19,8 @@ class Register1Activity : AppCompatActivity() {
 
     private lateinit var userRepository: UserRepository
 
+    private val AES: AESEncryption = AESEncryption()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +32,7 @@ class Register1Activity : AppCompatActivity() {
         buttonSiguiente = findViewById(R.id.buttonSiguiente)
 
         userRepository = UserRepository(this)
-
-
+        
         buttonSiguiente.setOnClickListener() {
 
             if (etUser.text.isEmpty() || etEmail.text.isEmpty() || etPassword.text.isEmpty()) {
@@ -54,6 +56,7 @@ class Register1Activity : AppCompatActivity() {
                         etUser.setError("Ese nombre de usuario ya esta en uso")
                         etPassword.setError("El e-mail ya esta en uso")
                     }
+
                     -1 -> {
                         if (!checkPassword) {
                             etPassword.setError("La contraseña no cumple los requisitos.")
@@ -65,8 +68,9 @@ class Register1Activity : AppCompatActivity() {
                         if (checkPassword && checkEmailEstructura) {
                             val intent = Intent(this, Register2Activity::class.java).apply {
                                 putExtra("user", etUser.text.toString())
+                                val encryptedPassword = AES.encrypt(etPassword.text.toString())
                                 putExtra("email", etEmail.text.toString())
-                                putExtra("password", etPassword.text.toString())
+                                putExtra("password", encryptedPassword)
                             }
                             startActivity(intent)
                         }
