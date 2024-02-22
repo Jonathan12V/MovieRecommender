@@ -26,109 +26,96 @@
         android:paddingRight="10dp"
         android:text="@string/registrate"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/etGeneros"
-        app:layout_constraintStart_toStartOf="@+id/etGeneros"
-        app:layout_constraintTop_toBottomOf="@+id/etGeneros" />
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
-    <EditText
-        android:id="@+id/etPeliculas"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MyApp.TextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="64dp"
-        android:background="@drawable/custom_input"
-        android:drawableStart="@mipmap/peliculas64px"
-        android:drawablePadding="12dp"
-        android:drawableTint="@color/white"
-        android:ems="10"
-        android:hint="@string/selecPeliculas"
-        android:inputType="text"
-        android:padding="5dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="50dp"
+        app:endIconDrawable="@mipmap/flecha_derecha"
+        app:endIconMode="custom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagenLogo"
-        tools:text="@string/selecPeliculas" />
+        app:layout_constraintTop_toBottomOf="@+id/imagenLogo">
 
-    <EditText
-        android:id="@+id/etActores"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:backgroundTint="@color/disabled_background_color"
+            android:completionHint="Selecciona una opción"
+            android:completionThreshold="1"
+            android:dropDownWidth="match_parent"
+            android:dropDownVerticalOffset="10dp"
+            android:editable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center_vertical"
+            android:padding="20dp"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:popupBackground="@android:color/white"
+            android:text="Selec tus peliculas"
+            android:textColor="@color/disabled_text_color"
+            tools:ignore="LabelFor">
+
+        </AutoCompleteTextView>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        style="@style/Widget.MyApp.TextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="64dp"
-        android:background="@drawable/custom_input"
-        android:drawableStart="@mipmap/actor64px"
+        android:layout_marginTop="40dp"
+        app:endIconDrawable="@mipmap/flecha_derecha"
+        app:endIconMode="custom"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
-        android:drawablePadding="12dp"
-        android:drawableTint="@color/white"
-        android:ems="10"
-        android:hint="@string/selecActores"
-        android:inputType="text"
-        android:padding="5dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPeliculas"
-        tools:text="@string/selecActores" />
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView2"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:backgroundTint="@color/disabled_background_color"
+            android:completionHint="Selecciona una opción"
+            android:completionThreshold="1"
+            android:dropDownWidth="match_parent"
+            android:dropDownVerticalOffset="10dp"
+            android:editable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center_vertical"
+            android:padding="20dp"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:popupBackground="@android:color/white"
+            android:text="Selec tus géneros"
+            android:textColor="@color/disabled_text_color"
+            tools:ignore="LabelFor">
 
-    <EditText
-        android:id="@+id/etGeneros"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="64dp"
-        android:background="@drawable/custom_input"
-        android:drawableStart="@mipmap/password64px"
+        </AutoCompleteTextView>
 
-        android:drawablePadding="12dp"
-        android:drawableTint="@color/white"
-        android:ems="10"
-        android:hint="@string/selecGeneros"
-        android:inputType="text"
-        android:padding="5dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etActores"
-        tools:text="@string/selecGeneros" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/flecha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/etPeliculas"
-        app:layout_constraintEnd_toEndOf="@+id/etPeliculas"
-        app:layout_constraintTop_toTopOf="@+id/etPeliculas"
-        app:srcCompat="@mipmap/flecha32px" />
-
-    <ImageView
-        android:id="@+id/flecha2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/etActores"
-        app:layout_constraintEnd_toEndOf="@+id/etActores"
-        app:layout_constraintTop_toTopOf="@+id/etActores"
-        app:srcCompat="@mipmap/flecha32px" />
-
-    <ImageView
-        android:id="@+id/flecha3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-
-        app:layout_constraintBottom_toBottomOf="@+id/etGeneros"
-        app:layout_constraintEnd_toEndOf="@+id/etGeneros"
-        app:layout_constraintTop_toTopOf="@+id/etGeneros"
-        app:srcCompat="@mipmap/flecha32px" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
