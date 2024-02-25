@@ -44,49 +44,13 @@ class PeliculasRecomendadasFragment : Fragment(), AdapterPeliculas.OnCorazonClic
         binding = ActivityPeliculasRecomendadasBinding.bind(view)
 
         progressBar = view.findViewById(R.id.progressBar)
-        val buttonTodo: RadioButton = view.findViewById(R.id.Todo)
-        val buttonRecomendadas: RadioButton = view.findViewById(R.id.recomendados)
 
         movieRepository = MovieRepository(requireContext())
         sharedPreferences = requireContext().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
-        // Restaurar el estado del RadioButton guardado
-        val selectedRadioButton = sharedPreferences.getInt(KEY_SELECTED_RADIOBUTTON, R.id.recomendados)
-        if (selectedRadioButton == R.id.recomendados) {
-            binding.Todo.isChecked = false
-            binding.recomendados.isChecked = true
-            obtenerPeliculasTodasRecomendadas(false) // Seleccionar recomendados por defecto
-        } else {
-            binding.Todo.isChecked = true
-            binding.recomendados.isChecked = false
-            progressBar.visibility = View.VISIBLE
-            obtenerPeliculasTodasRecomendadas(true)
-        }
-
-        buttonTodo.setOnClickListener {
-            buttonTodo.isChecked = true
-            buttonRecomendadas.isChecked = false
-
-            progressBar.visibility = View.VISIBLE
-            obtenerPeliculasTodasRecomendadas(true)
-        }
-
-        buttonRecomendadas.setOnClickListener {
-            buttonRecomendadas.isChecked = true
-            buttonTodo.isChecked = false
-
-            obtenerPeliculasTodasRecomendadas(false)
-        }
-
+        progressBar.visibility = View.VISIBLE
+        obtenerPeliculasTodasRecyclerView()
         return view
-    }
-
-    private fun obtenerPeliculasTodasRecomendadas(filtro: Boolean) {
-        if (filtro) {
-            obtenerPeliculasTodasRecyclerView()
-        } else {
-            obtenerPeliculasRecomendadasRecyclerView()
-        }
     }
 
     private fun obtenerPeliculasTodasRecyclerView() {
@@ -147,25 +111,6 @@ class PeliculasRecomendadasFragment : Fragment(), AdapterPeliculas.OnCorazonClic
             viewModel.obtenerTodasLasPaginas()
         }
     }
-
-    private fun obtenerPeliculasRecomendadasRecyclerView() {
-        binding.searchEditText.text = null // Borra el texto del EditText de búsqueda
-
-        adaptersMap.forEach { (genreId, adapter) ->
-            val recyclerView = binding.root.findViewById<RecyclerView>(obtenerIdRecyclerViewPorGenero(genreId))
-
-            recyclerView.visibility = View.GONE
-
-            adapter.actualizarLista(emptyList())
-        }
-
-        adaptersMap.keys.forEach { genreId ->
-            val textViewGenero = obtenerTextViewPorGenero(genreId)
-            textViewGenero.visibility = View.GONE
-        }
-
-        Toast.makeText(requireContext(), "Mostrando todas las películas recomendadas", Toast.LENGTH_SHORT).show()
-    }
     private fun obtenerIdRecyclerViewPorGenero(genreId: Int): Int {
         return when (genreId) {
             28 -> R.id.rvAccion
@@ -218,19 +163,4 @@ class PeliculasRecomendadasFragment : Fragment(), AdapterPeliculas.OnCorazonClic
             }
         }
     }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // Guardar el estado del RadioButton seleccionado en SharedPreferences
-        val selectedRadioButton = if (binding.Todo.isChecked) R.id.Todo else R.id.recomendados
-        sharedPreferences.edit().putInt(KEY_SELECTED_RADIOBUTTON, selectedRadioButton).apply()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        // Guardar el estado del RadioButton seleccionado en SharedPreferences
-        val selectedRadioButton = if (binding.Todo.isChecked) R.id.Todo else R.id.recomendados
-        sharedPreferences.edit().putInt(KEY_SELECTED_RADIOBUTTON, selectedRadioButton).apply()
-    }
-
-
 }

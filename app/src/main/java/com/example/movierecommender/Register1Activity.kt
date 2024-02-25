@@ -26,7 +26,7 @@ class Register1Activity : AppCompatActivity() {
         etUser = findViewById(R.id.etUser)
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
-        buttonSiguiente = findViewById(R.id.buttonSiguiente)
+        buttonSiguiente = findViewById(R.id.buttonRegistrate)
 
         userRepository = UserRepository(this)
 
@@ -63,11 +63,11 @@ class Register1Activity : AppCompatActivity() {
                             etEmail.setError("El email no tiene una estructura correcta")
                         }
                         if (checkPassword && checkEmailEstructura) {
-                            val intent = Intent(this, Register2Activity::class.java).apply {
-                                putExtra("user", etUser.text.toString())
-                                putExtra("email", etEmail.text.toString())
-                                putExtra("password", etPassword.text.toString())
-                            }
+                            userRepository.addUser(etUser.text.toString(), etEmail.text.toString(), etPassword.text.toString())
+
+                            Toast.makeText(this, "Te has registrado correctamente", Toast.LENGTH_LONG).show();
+
+                            val intent = Intent(this, LoginActivity::class.java)
                             startActivity(intent)
                         }
                     }

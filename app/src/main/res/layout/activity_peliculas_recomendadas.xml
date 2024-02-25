@@ -34,33 +34,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/Todo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:cursorVisible="false"
-                android:minHeight="48dp"
-                android:text="@string/selector_todo"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/searchEditText" />
-
-            <RadioButton
-                android:id="@+id/recomendados"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:checked="true"
-                android:minHeight="48dp"
-                android:text="@string/selector_recomendados"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/Todo" />
-
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyle"
@@ -69,8 +42,6 @@
                 android:layout_gravity="center"
                 android:visibility="gone"
                 android:layout_marginTop="8dp"/>
-
-
 
             <TextView
                 android:id="@+id/accion"
@@ -81,8 +52,7 @@
                 android:text="@string/lista_genero_accion"
                 android:textSize="17sp"
                 android:visibility="gone"
-                app:layout_constraintStart_toStartOf="@+id/rvAccion"
-                app:layout_constraintTop_toBottomOf="@+id/recomendados" />
+                app:layout_constraintStart_toStartOf="@+id/rvAccion"/>
 
             <!-- Agrega la RecyclerView aquí -->
             <androidx.recyclerview.widget.RecyclerView

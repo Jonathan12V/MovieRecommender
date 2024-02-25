@@ -17,14 +17,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonSiguiente"
+        android:id="@+id/buttonRegistrate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/gris_login"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="@string/siguiente"
+        android:text="@string/registrate"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/divPassword"
         app:layout_constraintStart_toStartOf="@+id/divPassword"
