@@ -21,11 +21,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:backgroundTint="@color/gris_login"
+        android:backgroundTint="@color/rojo_claro"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/siguiente"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/divPassword"
         app:layout_constraintStart_toStartOf="@+id/divPassword"
         app:layout_constraintTop_toBottomOf="@+id/divPassword" />
@@ -38,10 +38,10 @@
         android:layout_marginTop="64dp"
         android:layout_marginEnd="64dp"
         android:hint="@string/usuarioHint"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
-        app:cursorColor="@color/white"
-        app:hintTextColor="#66FFFFFF"
+        android:textColor="#000000"
+        android:textColorHint="@color/black"
+        app:cursorColor="#66000000"
+        app:hintTextColor="#66000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagenLogo">
@@ -50,9 +50,11 @@
             android:id="@+id/etUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_input"
-            android:textColor="#FFFFFF"
-            app:hintTextColor="#66FFFFFF" />
+            android:background="@drawable/custom_input_white"
+            android:textColor="#000000"
+            app:hintTextColor="#66FFFFFF"
+            android:maxLines="1"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -63,10 +65,10 @@
         android:layout_marginTop="44dp"
         android:layout_marginEnd="64dp"
         android:hint="@string/email"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
-        app:cursorColor="@color/white"
-        app:hintTextColor="#66FFFFFF"
+        android:textColor="#000000"
+        android:textColorHint="@color/black"
+        app:cursorColor="#66000000"
+        app:hintTextColor="#66000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divUser">
@@ -75,9 +77,11 @@
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_input"
-            android:textColor="#FFFFFF"
-            app:hintTextColor="#66FFFFFF" />
+            android:background="@drawable/custom_input_white"
+            android:textColor="#000000"
+            app:hintTextColor="#66FFFFFF"
+            android:maxLines="1"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -88,11 +92,10 @@
         android:layout_marginTop="44dp"
         android:layout_marginEnd="64dp"
         android:hint="@string/contraseña"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
-
-        app:cursorColor="@color/white"
-        app:hintTextColor="#66FFFFFF"
+        android:textColor="#000000"
+        android:textColorHint="@color/black"
+        app:cursorColor="#66000000"
+        app:hintTextColor="#66000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divEmail">
@@ -102,9 +105,10 @@
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_input"
-            android:textColor="#FFFFFF"
-            app:hintTextColor="#66FFFFFF" />
+            android:background="@drawable/custom_input_white"
+            android:textColor="#000000"
+            app:hintTextColor="#66FFFFFF"
+            android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
 

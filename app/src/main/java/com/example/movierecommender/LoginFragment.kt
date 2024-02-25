@@ -1,5 +1,6 @@
 package com.example.movierecommender
 
+import AESEncryption
 import UserInfo
 import android.content.Intent
 import android.os.Bundle
@@ -22,6 +23,9 @@ class LoginFragment : Fragment() {
     private lateinit var etPassword: EditText
     private lateinit var userRepository: UserRepository
 
+    private lateinit var AES: AESEncryption
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +38,8 @@ class LoginFragment : Fragment() {
         etPassword = view.findViewById(R.id.etPassword)
 
         userRepository = UserRepository(requireContext())
+        AES = AESEncryption()
+
 
         buttonIniciarSesion.setOnClickListener {
             // Validación de campos
@@ -41,7 +47,10 @@ class LoginFragment : Fragment() {
                 validacion()
             } else {
                 // Verificación de las credenciales del usuario
-                val check = userRepository.checkUser(etUser.text.toString(), etPassword.text.toString())
+                val passwordEncrypted = AES.encrypt(etPassword.text.toString())
+
+                val check = userRepository.checkUser(etUser.text.toString(), passwordEncrypted)
+
 
                 when (check) {
                     1 -> {
@@ -49,9 +58,11 @@ class LoginFragment : Fragment() {
                         UserInfo.username = etUser.text.toString()
                         UserInfo.id = userRepository.getIdUser(etUser.text.toString())
 
-                        val intent = Intent(requireContext(), PeliculasRecomendadasActivity::class.java)
+                        val intent =
+                            Intent(requireContext(), PeliculasRecomendadasActivity::class.java)
                         startActivity(intent)
                     }
+
                     2 -> etUser.setError("No existe ese usuario")
                     else -> etPassword.setError("Contraseña incorrecta")
                 }
