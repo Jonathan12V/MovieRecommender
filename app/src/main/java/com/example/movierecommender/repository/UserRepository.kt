@@ -10,10 +10,10 @@ import com.example.movierecommender.models.PeliculaModel
 import com.google.gson.Gson
 
 class UserRepository(context: Context) :
-    SQLiteOpenHelper(context, "movie_recommender.db", null, 2) {
+    SQLiteOpenHelper(context, "movie_recommender.db", null, 4) {
     override fun onCreate(db: SQLiteDatabase?) {
         val createTableStatement =
-            "CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR(20), email VARCHAR(50), password VARCHAR(30), peliculas_favoritas TEXT)";
+            "CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR(20), email VARCHAR(50), password VARCHAR(30), profile_image_path TEXT, peliculas_favoritas TEXT)";
         if (db != null) {
             db.execSQL(createTableStatement)
         }
@@ -33,6 +33,7 @@ class UserRepository(context: Context) :
         cv.put("user", user)
         cv.put("email", email)
         cv.put("password", password)
+        cv.put("profile_image_path", "perfil.png")
         val gson = Gson()
         val movieListJson = gson.toJson(emptyList<PeliculaModel>())
         cv.put("peliculas_favoritas", movieListJson)
@@ -63,26 +64,60 @@ class UserRepository(context: Context) :
         }
     }
 
-    fun cambiarCampos(user: String, email: String, password: String) {
+    fun cambiarCampos(user: String, email: String, password: String, profileImagePath: String?) {
         val db = this.writableDatabase
+
+        val updateFields = mutableListOf<String>()
 
         if (!password.isEmpty()) {
             val updatePasswordQuery = "UPDATE user SET password=? WHERE user=?"
             db.execSQL(updatePasswordQuery, arrayOf(password, UserInfo.username))
+            updateFields.add("password")
         }
 
         if (!user.isEmpty()) {
             val updateUserQuery = "UPDATE user SET user=? WHERE user=?"
             db.execSQL(updateUserQuery, arrayOf(user, UserInfo.username))
-            UserInfo.username = user;
+            UserInfo.username = user
+            updateFields.add("user")
         }
 
         if (!email.isEmpty()) {
             val updateEmailQuery = "UPDATE user SET email=? WHERE user=?"
             db.execSQL(updateEmailQuery, arrayOf(email, UserInfo.username))
+            updateFields.add("email")
+        }
+
+        // Update profile image path if provided
+        if (!profileImagePath.isNullOrEmpty()) {
+            val updateImagePathQuery = "UPDATE user SET profile_image_path=? WHERE user=?"
+            db.execSQL(updateImagePathQuery, arrayOf(profileImagePath, UserInfo.username))
+            updateFields.add("profile_image_path")
+        }
+
+        // Log the updated fields
+        if (updateFields.isNotEmpty()) {
+            val updatedFieldsStr = updateFields.joinToString(", ")
+            println("Updated fields: $updatedFieldsStr")
         }
     }
 
+    @SuppressLint("Range")
+    fun obtenerRutaImagenPerfil(): String? {
+        val db = this.readableDatabase
+        var profileImagePath: String? = null
+
+        val query = "SELECT profile_image_path FROM user WHERE user=?"
+        val cursor = db.rawQuery(query, arrayOf(UserInfo.username))
+
+        if (cursor.moveToFirst()) {
+            profileImagePath = cursor.getString(cursor.getColumnIndex("profile_image_path"))
+        }
+        cursor.close()
+        db.close()
+
+        return profileImagePath
+    }
     @SuppressLint("Range")
     fun verEmail(): String {
         val db = this.readableDatabase

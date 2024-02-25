@@ -1,24 +1,34 @@
 package com.example.movierecommender
 
 import UserInfo
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.example.movierecommender.repository.UserRepository
 import com.example.movierecommender.views.PeliculasRecomendadasActivity
 import com.example.movierecommender.views.PeliculasRecomendadasFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-
+import java.io.FileNotFoundException
 abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var bottomNavigationView: BottomNavigationView
@@ -27,12 +37,19 @@ abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     private var selectedItem: MenuItem? = null
     private var selectedBottomNavItem: Int = 0
     private lateinit var fab: FloatingActionButton
+    // Código de solicitud de permiso (puede ser cualquier número)
+    private val REQUEST_EXTERNAL_STORAGE_PERMISSION = 100
+    private val CHANGE_PROFILE_IMAGE_REQUEST_CODE = 101
+    private lateinit var userRepository: UserRepository
+    private lateinit var imageViewPerfil: ImageView
+    private lateinit var imageFotoPerfil: ImageView
 
     override fun onCreate( savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_header)
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
+        fab = findViewById(R.id.fab)
 
         drawerLayout = findViewById(R.id.drawer_layout)
 
@@ -45,6 +62,20 @@ abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         val headerView = navigationView.getHeaderView(0)
         val navHeaderTextView : TextView = headerView.findViewById(R.id.nav_header_textView)
         navHeaderTextView.text = UserInfo.username
+
+        imageViewPerfil = headerView.findViewById(R.id.nav_header_image)
+        imageFotoPerfil = findViewById(R.id.fotoPerfil)
+        userRepository= UserRepository(this)
+        val profileImagePath = userRepository.obtenerRutaImagenPerfil()
+
+        Log.d("MenuActivity", "Ruta de la imagen: $profileImagePath")
+
+        if (!isStoragePermissionGranted()) {
+            requestStoragePermission()
+        } else {
+            loadProfileImage(profileImagePath, imageViewPerfil)
+            loadProfileImage(profileImagePath, imageFotoPerfil)
+        }
 
         bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
 
@@ -111,6 +142,98 @@ abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         })
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        // Actualizar la imagen de perfil cada vez que se muestre la actividad
+        actualizarImagenPerfil()
+    }
+
+    private fun actualizarImagenPerfil() {
+        val profileImagePath = userRepository.obtenerRutaImagenPerfil()
+        loadProfileImage(profileImagePath, imageViewPerfil)
+    }
+
+    private fun loadProfileImage(profileImagePath: String?, imageView: ImageView) {
+        if (!profileImagePath.isNullOrEmpty()) {
+            try {
+                val imageUri = Uri.parse(profileImagePath)
+                val bitmap =
+                    MediaStore.Images.Media.getBitmap(
+                        this.contentResolver,
+                        imageUri
+                    )
+                val roundedBitmapDrawable =
+                    RoundedBitmapDrawableFactory.create(resources, bitmap)
+                roundedBitmapDrawable.isCircular = true
+                imageView.setImageDrawable(roundedBitmapDrawable)
+            } catch (e: FileNotFoundException) {
+                // Manejar la excepción si la imagen no se encuentra
+                // Cargar la imagen por defecto en caso de que la ruta no sea válida
+                val profileImageResourceId = R.mipmap.perfil
+                val bitmap = BitmapFactory.decodeResource(resources, profileImageResourceId)
+                val roundedBitmapDrawable =
+                    RoundedBitmapDrawableFactory.create(resources, bitmap)
+                roundedBitmapDrawable.isCircular = true
+                imageView.setImageDrawable(roundedBitmapDrawable)
+            }
+        } else {
+            // Si la ruta de la imagen es nula o vacía, cargar la imagen por defecto
+            val profileImageResourceId = R.mipmap.perfil
+            val bitmap = BitmapFactory.decodeResource(resources, profileImageResourceId)
+            val roundedBitmapDrawable =
+                RoundedBitmapDrawableFactory.create(resources, bitmap)
+            roundedBitmapDrawable.isCircular = true
+            imageView.setImageDrawable(roundedBitmapDrawable)
+        }
+    }
+
+    private fun requestStoragePermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+            REQUEST_EXTERNAL_STORAGE_PERMISSION
+        )
+    }
+
+    private fun isStoragePermissionGranted(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun changeProfileImage() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, CHANGE_PROFILE_IMAGE_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == CHANGE_PROFILE_IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            val selectedImage: Uri? = data.data
+            val imagePath = selectedImage?.toString()
+            // Actualizar la imagen de perfil con la nueva ruta de la imagen
+            loadProfileImage(imagePath, imageViewPerfil)
+        }
+    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_EXTERNAL_STORAGE_PERMISSION) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permiso concedido, carga la imagen del perfil
+                val profileImagePath = userRepository.obtenerRutaImagenPerfil()
+                loadProfileImage(profileImagePath, imageViewPerfil) // Asegúrate de pasar imageViewPerfil aquí
+            } else {
+                // Permiso denegado, maneja el caso según tu lógica de la aplicación
+            }
+        }
+    }
+
 
     // Agrega esta función en tu clase MenuActivity para reemplazar el contenido del contenedor principal con un fragmento
     private fun replaceFragment(fragment: Fragment) {

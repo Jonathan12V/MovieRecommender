@@ -11,7 +11,7 @@ import com.example.movierecommender.models.PeliculaModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class MovieRepository(context: Context) : SQLiteOpenHelper(context, "movie_recommender.db", null, 2) {
+class MovieRepository(context: Context) : SQLiteOpenHelper(context, "movie_recommender.db", null, 4) {
     override fun onCreate(db: SQLiteDatabase?) {
         // No es necesario crear una nueva tabla para las peliculas
         // ya que ahora se almacena las peliculas favoritas

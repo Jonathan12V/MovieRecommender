@@ -8,4 +8,3 @@ data class PeliculasResponse(
     @SerializedName("results")
     var resultados: List<PeliculaModel>
 )
-

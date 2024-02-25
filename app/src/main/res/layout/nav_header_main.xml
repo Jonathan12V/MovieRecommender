@@ -14,10 +14,12 @@
     android:padding="16dp">
     
     <ImageView
-        android:id="@+id/nav_header_imageView"
+        android:id="@+id/nav_header_image"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@mipmap/perfil" />
+        android:src="@mipmap/perfil"
+        android:background="@drawable/circle_background"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/nav_header_textView"

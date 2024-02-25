@@ -25,7 +25,6 @@ class LoginFragment : Fragment() {
 
     private lateinit var AES: AESEncryption
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

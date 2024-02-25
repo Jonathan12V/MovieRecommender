@@ -15,12 +15,11 @@ class Register1Activity : AppCompatActivity() {
     lateinit var etUser: EditText
     lateinit var etEmail: EditText
     lateinit var etPassword: EditText
-    lateinit var buttonSiguiente: Button
+    lateinit var buttonGuardar: Button
 
     private lateinit var userRepository: UserRepository
 
     private val AES: AESEncryption = AESEncryption()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,11 +28,12 @@ class Register1Activity : AppCompatActivity() {
         etUser = findViewById(R.id.etUser)
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
-        buttonSiguiente = findViewById(R.id.buttonSiguiente)
+        buttonGuardar = findViewById(R.id.buttonGuardar)
 
         userRepository = UserRepository(this)
-        
-        buttonSiguiente.setOnClickListener() {
+
+
+        buttonGuardar.setOnClickListener() {
 
             if (etUser.text.isEmpty() || etEmail.text.isEmpty() || etPassword.text.isEmpty()) {
                 validacion();
@@ -56,7 +56,6 @@ class Register1Activity : AppCompatActivity() {
                         etUser.setError("Ese nombre de usuario ya esta en uso")
                         etPassword.setError("El e-mail ya esta en uso")
                     }
-
                     -1 -> {
                         if (!checkPassword) {
                             etPassword.setError("La contraseña no cumple los requisitos.")
@@ -66,12 +65,12 @@ class Register1Activity : AppCompatActivity() {
                             etEmail.setError("El email no tiene una estructura correcta")
                         }
                         if (checkPassword && checkEmailEstructura) {
-                            val intent = Intent(this, Register2Activity::class.java).apply {
-                                putExtra("user", etUser.text.toString())
-                                val encryptedPassword = AES.encrypt(etPassword.text.toString())
-                                putExtra("email", etEmail.text.toString())
-                                putExtra("password", encryptedPassword)
-                            }
+                            val encryptedPassword = AES.encrypt(etPassword.text.toString());
+                            userRepository.addUser(etUser.text.toString(), etEmail.text.toString(), encryptedPassword)
+
+                            Toast.makeText(this, "Te has registrado correctamente", Toast.LENGTH_LONG).show();
+
+                            val intent = Intent(this, LoginActivity::class.java)
                             startActivity(intent)
                         }
                     }

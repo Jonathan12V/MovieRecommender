@@ -17,18 +17,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonSiguiente"
+        android:id="@+id/buttonGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="150dp"
         android:backgroundTint="@color/rojo_claro"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="@string/siguiente"
+        android:text="@string/guardar"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/divPassword"
-        app:layout_constraintStart_toStartOf="@+id/divPassword"
-        app:layout_constraintTop_toBottomOf="@+id/divPassword" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/divUser"
