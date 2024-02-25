@@ -1,5 +1,6 @@
 package com.example.movierecommender
 
+import AESEncryption
 import UserInfo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var etPassword: EditText
 
     private lateinit var userRepository: UserRepository
+    private lateinit var AES: AESEncryption
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +36,13 @@ class LoginActivity : AppCompatActivity() {
         etPassword = findViewById(R.id.etPassword)
 
         userRepository = UserRepository(this)
+        AES = AESEncryption()
 
         buttonIniciarSesion.setOnClickListener {
 
-            val check = userRepository.checkUser(etUser.text.toString(), etPassword.text.toString())
+            val passwordEncrypted = AES.encrypt(etPassword.text.toString())
+
+            val check = userRepository.checkUser(etUser.text.toString(), passwordEncrypted)
 
             if (check == 1) {
 

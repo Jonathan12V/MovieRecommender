@@ -39,6 +39,7 @@ class EditPerfilFragment : Fragment() {
     private val PICK_IMAGE_REQUEST = 1
     private val REQUEST_IMAGE_CAPTURE = 2
     private val CAMERA_PERMISSION_REQUEST_CODE = 101
+    private val STORAGE_PERMISSION_REQUEST_CODE = 1002
     private var selectedImageUri: Uri? = null
 
     override fun onCreateView(
@@ -71,9 +72,9 @@ class EditPerfilFragment : Fragment() {
                 Toast.LENGTH_LONG
             ).show()
 
-            // Recargar el fragmento actual (EditPerfilFragment) para que el fragmento VisualizarPerfilFragment se actualice
-            val fragmentTransaction = requireFragmentManager().beginTransaction()
-            fragmentTransaction.detach(this).attach(this).commit()
+            // Enviar un código de resultado a MenuActivity para indicar que la imagen de perfil ha cambiado
+            requireActivity().setResult(Activity.RESULT_OK)
+            requireActivity().finish()
         }
 
         buttonCancelar.setOnClickListener {
@@ -117,9 +118,20 @@ class EditPerfilFragment : Fragment() {
     }
 
     private fun dispatchTakePictureIntent() {
-        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (takePictureIntent.resolveActivity(requireActivity().packageManager) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+        val permission = Manifest.permission.WRITE_EXTERNAL_STORAGE
+        if (ContextCompat.checkSelfPermission(requireContext(), permission)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(permission),
+                STORAGE_PERMISSION_REQUEST_CODE
+            )
+        } else {
+            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            if (takePictureIntent.resolveActivity(requireActivity().packageManager) != null) {
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+            }
         }
     }
 

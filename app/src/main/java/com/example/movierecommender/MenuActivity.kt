@@ -44,12 +44,12 @@ abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     private lateinit var imageViewPerfil: ImageView
     private lateinit var imageFotoPerfil: ImageView
 
-
     override fun onCreate( savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_header)
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
+        fab = findViewById(R.id.fab)
 
         drawerLayout = findViewById(R.id.drawer_layout)
 
