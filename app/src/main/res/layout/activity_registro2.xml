@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:backgroundTint="@color/gris_login"
+        android:backgroundTint="@color/rojo_claro"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/registrate"
