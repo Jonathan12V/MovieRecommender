@@ -8,7 +8,6 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.movierecommender.Register1Activity
-import com.example.movierecommender.Register2Activity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -24,7 +23,7 @@ class Register1ActivityTest {
     @Test
     fun verifyEditTextValidation() {
         // Caso de prueba para verificar la validación de campos requeridos
-        onView(withId(R.id.buttonSiguiente)).perform(click()) // Hacer clic sin ingresar datos
+        onView(withId(R.id.buttonGuardar)).perform(click()) // Hacer clic sin ingresar datos
 
         // Verificar que se muestren los mensajes de error en los EditText
         onView(withId(R.id.etUser)).check(matches(hasErrorText("Campo requerido")))
@@ -39,7 +38,7 @@ class Register1ActivityTest {
         onView(withId(R.id.etEmail)).perform(typeText("correo@test.com"))
         onView(withId(R.id.etPassword)).perform(typeText("Password123"))
 
-        onView(withId(R.id.buttonSiguiente)).perform(click())
+        onView(withId(R.id.buttonGuardar)).perform(click())
 
         // Verificar que no hay mensajes de error
         onView(withText("Campo requerido")).check(doesNotExist())
