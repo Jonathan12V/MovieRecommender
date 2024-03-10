@@ -1,5 +1,7 @@
 package com.example.movierecommender
 
+import AESEncryption
+import UserInfo
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -21,6 +23,7 @@ import androidx.fragment.app.Fragment
 import com.example.movierecommender.repository.UserRepository
 import java.io.ByteArrayOutputStream
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 
@@ -35,11 +38,10 @@ class EditPerfilFragment : Fragment() {
     private lateinit var etUser: EditText
     private lateinit var etPassword: EditText
     private lateinit var etEmail: EditText
+    private val AES: AESEncryption = AESEncryption()
 
     private val PICK_IMAGE_REQUEST = 1
     private val REQUEST_IMAGE_CAPTURE = 2
-    private val CAMERA_PERMISSION_REQUEST_CODE = 101
-    private val STORAGE_PERMISSION_REQUEST_CODE = 1002
     private var selectedImageUri: Uri? = null
 
     override fun onCreateView(
@@ -59,7 +61,11 @@ class EditPerfilFragment : Fragment() {
 
         userRepository = UserRepository(requireContext())
 
+        etUser.setText(UserInfo.username)
+        etEmail.setText((userRepository.verEmail()))
+
         buttonGuardar.setOnClickListener {
+            val encryptedPassword = AES.encrypt(etPassword.text.toString());
             val username = etUser.text.toString()
             val email = etEmail.text.toString()
             val password = etPassword.text.toString()
@@ -74,7 +80,9 @@ class EditPerfilFragment : Fragment() {
 
             // Enviar un código de resultado a MenuActivity para indicar que la imagen de perfil ha cambiado
             requireActivity().setResult(Activity.RESULT_OK)
-            requireActivity().finish()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, VisualizacionPerfilFragment())
+                .commit()
         }
 
         buttonCancelar.setOnClickListener {
@@ -98,41 +106,9 @@ class EditPerfilFragment : Fragment() {
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
 
-    private fun checkCameraPermissionAndDispatchIntent() {
-        // Verificar si el permiso de la cámara ya está otorgado
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.CAMERA
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // Si el permiso no está otorgado, solicitarlo al usuario
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.CAMERA),
-                CAMERA_PERMISSION_REQUEST_CODE
-            )
-        } else {
-            // Si el permiso ya está otorgado, proceder con la lógica para abrir la cámara
-            dispatchTakePictureIntent()
-        }
-    }
-
-    private fun dispatchTakePictureIntent() {
-        val permission = Manifest.permission.WRITE_EXTERNAL_STORAGE
-        if (ContextCompat.checkSelfPermission(requireContext(), permission)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(permission),
-                STORAGE_PERMISSION_REQUEST_CODE
-            )
-        } else {
-            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            if (takePictureIntent.resolveActivity(requireActivity().packageManager) != null) {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-            }
-        }
+    private fun abridCamara() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
     }
 
     // Método para manejar el resultado de la captura de imagen desde la cámara
@@ -148,8 +124,7 @@ class EditPerfilFragment : Fragment() {
                     setCircularImage(resizedBitmap)
                 }
                 PICK_IMAGE_REQUEST -> {
-                    if (data != null && data.data != null) {
-                        selectedImageUri = data.data
+                        selectedImageUri = data?.data
                         val imageBitmap = MediaStore.Images.Media.getBitmap(
                             requireContext().contentResolver,
                             selectedImageUri
@@ -157,7 +132,6 @@ class EditPerfilFragment : Fragment() {
                         val resizedBitmap = resizeBitmap(imageBitmap, 200, 200)
                         imageViewPerfil.setImageBitmap(resizedBitmap)
                         setCircularImage(resizedBitmap)
-                    }
                 }
             }
         }
@@ -186,7 +160,7 @@ class EditPerfilFragment : Fragment() {
         builder.setTitle("Subir foto de perfil")
         builder.setItems(options) { dialog, which ->
             when (which) {
-                0 -> checkCameraPermissionAndDispatchIntent()
+                0 -> abridCamara()
                 1 -> openFileChooser()
             }
         }
@@ -200,4 +174,3 @@ class EditPerfilFragment : Fragment() {
     }
 
 }
-

@@ -152,6 +152,7 @@ abstract class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     private fun actualizarImagenPerfil() {
         val profileImagePath = userRepository.obtenerRutaImagenPerfil()
         loadProfileImage(profileImagePath, imageViewPerfil)
+        loadProfileImage(profileImagePath, imageFotoPerfil)
     }
 
     private fun loadProfileImage(profileImagePath: String?, imageView: ImageView) {

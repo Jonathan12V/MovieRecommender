@@ -49,7 +49,7 @@ class VisualizacionPerfilFragment : Fragment() {
         if (!isStoragePermissionGranted()) {
             requestStoragePermission()
         } else {
-            loadProfileImage(profileImagePath)
+            loadProfileImage(profileImagePath, imageViewPerfil)
         }
 
         val btnEditarPerfil = rootView.findViewById<Button>(R.id.btnEditarPerfil)
@@ -67,19 +67,29 @@ class VisualizacionPerfilFragment : Fragment() {
         return rootView
     }
 
-    private fun loadProfileImage(profileImagePath: String?) {
+    override fun onResume() {
+        super.onResume()
+        // Actualizar la imagen de perfil cada vez que se muestre la actividad
+        actualizarImagenPerfil()
+    }
+
+    private fun actualizarImagenPerfil() {
+        val profileImagePath = userRepository.obtenerRutaImagenPerfil()
+        loadProfileImage(profileImagePath, imageViewPerfil)
+    }
+    private fun loadProfileImage(profileImagePath: String?, imageView: ImageView) {
         if (!profileImagePath.isNullOrEmpty()) {
             try {
                 val imageUri = Uri.parse(profileImagePath)
                 val bitmap =
                     MediaStore.Images.Media.getBitmap(
-                        requireContext().contentResolver,
+                        requireActivity().contentResolver,
                         imageUri
                     )
                 val roundedBitmapDrawable =
                     RoundedBitmapDrawableFactory.create(resources, bitmap)
                 roundedBitmapDrawable.isCircular = true
-                imageViewPerfil.setImageDrawable(roundedBitmapDrawable)
+                imageView.setImageDrawable(roundedBitmapDrawable)
             } catch (e: FileNotFoundException) {
                 // Manejar la excepción si la imagen no se encuentra
                 // Cargar la imagen por defecto en caso de que la ruta no sea válida
@@ -88,7 +98,7 @@ class VisualizacionPerfilFragment : Fragment() {
                 val roundedBitmapDrawable =
                     RoundedBitmapDrawableFactory.create(resources, bitmap)
                 roundedBitmapDrawable.isCircular = true
-                imageViewPerfil.setImageDrawable(roundedBitmapDrawable)
+                imageView.setImageDrawable(roundedBitmapDrawable)
             }
         } else {
             // Si la ruta de la imagen es nula o vacía, cargar la imagen por defecto
@@ -97,7 +107,7 @@ class VisualizacionPerfilFragment : Fragment() {
             val roundedBitmapDrawable =
                 RoundedBitmapDrawableFactory.create(resources, bitmap)
             roundedBitmapDrawable.isCircular = true
-            imageViewPerfil.setImageDrawable(roundedBitmapDrawable)
+            imageView.setImageDrawable(roundedBitmapDrawable)
         }
     }
 
@@ -126,7 +136,7 @@ class VisualizacionPerfilFragment : Fragment() {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permiso concedido, carga la imagen del perfil
                 val profileImagePath = userRepository.obtenerRutaImagenPerfil()
-                loadProfileImage(profileImagePath)
+                loadProfileImage(profileImagePath, imageViewPerfil)
             } else {
                 // Permiso denegado, maneja el caso según tu lógica de la aplicación
             }
