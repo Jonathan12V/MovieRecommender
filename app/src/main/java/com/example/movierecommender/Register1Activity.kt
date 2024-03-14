@@ -1,5 +1,6 @@
 package com.example.movierecommender
 
+import AESEncryption
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -14,10 +15,11 @@ class Register1Activity : AppCompatActivity() {
     lateinit var etUser: EditText
     lateinit var etEmail: EditText
     lateinit var etPassword: EditText
-    lateinit var buttonSiguiente: Button
+    lateinit var buttonGuardar: Button
 
     private lateinit var userRepository: UserRepository
 
+    private val AES: AESEncryption = AESEncryption()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +28,12 @@ class Register1Activity : AppCompatActivity() {
         etUser = findViewById(R.id.etUser)
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
-        buttonSiguiente = findViewById(R.id.buttonRegistrate)
+        buttonGuardar = findViewById(R.id.buttonGuardar)
 
         userRepository = UserRepository(this)
 
 
-        buttonSiguiente.setOnClickListener() {
+        buttonGuardar.setOnClickListener() {
 
             if (etUser.text.isEmpty() || etEmail.text.isEmpty() || etPassword.text.isEmpty()) {
                 validacion();
@@ -63,7 +65,8 @@ class Register1Activity : AppCompatActivity() {
                             etEmail.setError("El email no tiene una estructura correcta")
                         }
                         if (checkPassword && checkEmailEstructura) {
-                            userRepository.addUser(etUser.text.toString(), etEmail.text.toString(), etPassword.text.toString())
+                            val encryptedPassword = AES.encrypt(etPassword.text.toString());
+                            userRepository.addUser(etUser.text.toString(), etEmail.text.toString(), encryptedPassword)
 
                             Toast.makeText(this, "Te has registrado correctamente", Toast.LENGTH_LONG).show();
 
@@ -96,4 +99,3 @@ class Register1Activity : AppCompatActivity() {
     }
 
 }
-
